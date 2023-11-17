@@ -16,7 +16,15 @@
 
 @layer base{
   body {
-    @apply bg-surface-50 font-body dark:bg-surface-800 dark:text-surface-50
+    @apply font-body font-[600] tracking-widest
+  }
+
+  .container {
+    @apply px-16 md:px-32 mx-auto
+  }
+
+  a:hover {
+    @apply text-primary-500
   }
 }
 
@@ -42,27 +50,27 @@
   }
 
   .subhead1 {
-    @apply font-book leading-120 text-32
+    @apply font-[600] leading-120 text-32
   }
 
   .subhead2 {
-    @apply font-book leading-120 text-24
+    @apply font-[600] leading-120 text-24
   }
 
   .subhead3 {
-    @apply font-book leading-120 text-18
+    @apply font-[600] leading-120 text-18
   }
 
   .body {
-    @apply font-book leading-120 text-16
+    @apply font-[600] leading-120 text-16
   }
 
   .body2 {
-    @apply font-book leading-120 text-14
+    @apply font-[600] leading-120 text-14
   }
 
   .caption {
-    @apply font-book leading-120 text-12
+    @apply font-[600] leading-120 text-12
   }
 
   .button {

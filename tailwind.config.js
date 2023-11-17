@@ -13,7 +13,7 @@ module.exports = {
       xl: '1440px',
     },
     fontFamily: {
-      'body': ['SuisseIntl', 'Helvetica', 'Arial', 'sans-serif']
+      'body': ['Neucha', 'cursive']
     },
     colors: {
       transparent: 'transparent',
@@ -110,10 +110,6 @@ module.exports = {
       14: '14px',
       12: '12px',
     },
-    fontWeight: {
-      bold: 700,
-      book: 450,
-    },
     lineHeight: {
       150: '150%',
       140: '140%',
@@ -121,6 +117,25 @@ module.exports = {
       120: '120%',
       100: '100%',
     },
+    spacing: {
+      1: '1px',
+      2: '2px',
+      4: '4px',
+      8: '8px',
+      12: '12px',
+      16: '16px',
+      20: '20px',
+      24: '24px',
+      28: '28px',
+      32: '32px',
+      36: '36px',
+      40: '40px',
+      44: '44px',
+      48: '48px',
+      52: '52px',
+      56: '56px',
+      60: '60px',
+    }
   },
   plugins: [],
 }

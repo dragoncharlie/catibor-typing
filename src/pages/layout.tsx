@@ -1,22 +1,22 @@
-import { Link, Outlet } from 'react-router-dom'
+import {Outlet} from 'react-router-dom'
 import useTheme from '@/_themes/useTheme.tsx'
+import Header from "@/_components/layout/Header.tsx";
+import Footer from "@/_components/layout/Footer.tsx";
 
 function Layout() {
-	useTheme()
+  useTheme()
 
-	return (
-		<div>
-			<div className='flex items-center gap-2 mb-8'>
-				<Link className='hover:text-primary-500' to='/'>
-					Home page
-				</Link>
-				<Link className='hover:text-primary-500' to='/users'>
-					Users page
-				</Link>
-			</div>
-			<Outlet />
-		</div>
-	)
+  return (
+    <div className='flex flex-col min-h-screen'>
+      <Header/>
+      <main className='grow'>
+        <div className='container'>
+          <Outlet/>
+        </div>
+      </main>
+      <Footer/>
+    </div>
+  )
 }
 
 export default Layout

@@ -10,14 +10,14 @@ export default function LocaleSwitcher() {
 	}
 
 	return (
-		<div>
+		<div className='flex items-center gap-16'>
 			<Helmet
 				htmlAttributes={{
 					lang: i18n.language,
 					dir: i18n.dir(),
 				}}
 			/>
-			<p>Locale switcher: {t('active_locale')}</p>
+			<p>{t('active_locale')}</p>
 			<ul className='flex gap-2'>
 				{config.locales.map((locale) => {
 					return (

@@ -9,8 +9,8 @@ function Layout() {
   return (
     <div className='flex flex-col min-h-screen'>
       <Header/>
-      <main className='grow'>
-        <div className='container'>
+      <main className='grow flex flex-col'>
+        <div className='container grow flex flex-col'>
           <Outlet/>
         </div>
       </main>

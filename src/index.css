@@ -16,64 +16,14 @@
 
 @layer base{
   body {
-    @apply font-body font-[600] tracking-widest
+    @apply font-body font-[600] tracking-widest text-[14px]
   }
 
   .container {
-    @apply px-16 md:px-32 mx-auto
+    @apply px-16 md:px-32 mx-auto !max-w-[1200px]
   }
 
   a:hover {
     @apply text-primary-500
-  }
-}
-
-@layer components {
-  .h1 {
-    @apply font-bold leading-140 text-32 lg:text-48
-  }
-
-  .h2 {
-    @apply font-bold leading-140 text-24 lg:text-32
-  }
-
-  .h3 {
-    @apply font-bold leading-130 text-18 lg:text-24
-  }
-
-  .h4 {
-    @apply font-bold leading-130 text-16 lg:text-18
-  }
-
-  .h5 {
-    @apply font-bold leading-130 text-14 lg:text-16
-  }
-
-  .subhead1 {
-    @apply font-[600] leading-120 text-32
-  }
-
-  .subhead2 {
-    @apply font-[600] leading-120 text-24
-  }
-
-  .subhead3 {
-    @apply font-[600] leading-120 text-18
-  }
-
-  .body {
-    @apply font-[600] leading-120 text-16
-  }
-
-  .body2 {
-    @apply font-[600] leading-120 text-14
-  }
-
-  .caption {
-    @apply font-[600] leading-120 text-12
-  }
-
-  .button {
-    @apply font-bold leading-150 text-16
   }
 }

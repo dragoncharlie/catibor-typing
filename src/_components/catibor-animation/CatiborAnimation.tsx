@@ -82,13 +82,13 @@ const CatiborAnimation = ({ className = '', active }: CatiborAnimationProps) => 
 
   return (
     <div className={className}>
-      <div className='relative'>
-        <img src={Table} alt=''/>
-        <img className={`absolute top-0 left-0 ${rightPaw ? 'opacity-0' : 'opacity-100'}`} src={Right} alt=''/>
-        <img className={`absolute top-0 left-0 ${!rightPaw ? 'opacity-0' : 'opacity-100'}`} src={RightDown} alt=''/>
-        <img className='absolute top-0 left-0' src={Body} alt=''/>
-        <img className={`absolute top-0 left-0 ${leftPaw ? 'opacity-0' : 'opacity-100'}`} src={Left} alt=''/>
-        <img className={`absolute top-0 left-0 ${!leftPaw ? 'opacity-0' : 'opacity-100'}`} src={LeftDown} alt=''/>
+      <div className='relative flex justify-end items-end'>
+        <img className='max-h-full' src={Table} alt=''/>
+        <img className={`absolute bottom-0 right-0 max-h-full ${rightPaw ? 'opacity-0' : 'opacity-100'}`} src={Right} alt=''/>
+        <img className={`absolute bottom-0 right-0 max-h-full ${!rightPaw ? 'opacity-0' : 'opacity-100'}`} src={RightDown} alt=''/>
+        <img className='absolute bottom-0 right-0 max-h-full' src={Body} alt=''/>
+        <img className={`absolute bottom-0 right-0 max-h-full ${leftPaw ? 'opacity-0' : 'opacity-100'}`} src={Left} alt=''/>
+        <img className={`absolute bottom-0 right-0 max-h-full ${!leftPaw ? 'opacity-0' : 'opacity-100'}`} src={LeftDown} alt=''/>
       </div>
     </div>
   )

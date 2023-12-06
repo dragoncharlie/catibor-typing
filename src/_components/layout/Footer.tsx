@@ -3,13 +3,13 @@ import {Link} from "react-router-dom";
 const Footer = () => {
 
   return (
-    <footer className='py-32'>
+    <footer className='py-8 border-t-2 h-40'>
       <div className='container flex justify-between gap-16'>
         <Link className='hover:text-primary-500' to='/'>
           Catibor
         </Link>
 
-        <div className='flex flex-col gap-16'>
+        <div className='flex gap-8'>
           <a href='https://t.me/addstickers/Catibor' target='_blank'>
             TG stickers
           </a>

@@ -9,7 +9,7 @@ function Layout() {
   return (
     <div className='flex flex-col min-h-screen'>
       <Header/>
-      <main className='grow flex flex-col'>
+      <main className='grow flex flex-col py-16'>
         <div className='container grow flex flex-col'>
           <Outlet/>
         </div>

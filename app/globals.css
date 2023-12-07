@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base{
+  body {
+    @apply font-body !font-[600] tracking-widest text-[14px]
+  }
+
+  .container {
+    @apply px-16 md:px-32 mx-auto !max-w-[1140px]
+  }
+
+  a:hover {
+    @apply text-primary-500
+  }
+}

@@ -1,10 +1,5 @@
 import {useEffect, useState} from "react";
-import Body from './body.png'
-import Table from './table.png'
-import LeftDown from './left_down.png'
-import Left from './left_up.png'
-import RightDown from './right_down.png'
-import Right from './right_up.png'
+import Image from 'next/image'
 
 const LEFT_PAW = ['q','w','e','r','t','a','s','d','f','g','z','x','c','v','b','backquote', '1','2','3','4','5', 'space']
 const RIGHT_PAW = ['y','u','i','o','p','bracketleft','bracketright','h','j','k','l','semicolon', 'quote','n','m','comma','period','slash','6','7','8','9','0','minus','equal', 'backspace', 'space']
@@ -83,12 +78,12 @@ const CatiborAnimation = ({ className = '', active }: CatiborAnimationProps) => 
   return (
     <div className={className}>
       <div className='relative flex justify-end items-end'>
-        <img className='max-h-full' src={Table} alt=''/>
-        <img className={`absolute bottom-0 right-0 max-h-full ${rightPaw ? 'opacity-0' : 'opacity-100'}`} src={Right} alt=''/>
-        <img className={`absolute bottom-0 right-0 max-h-full ${!rightPaw ? 'opacity-0' : 'opacity-100'}`} src={RightDown} alt=''/>
-        <img className='absolute bottom-0 right-0 max-h-full' src={Body} alt=''/>
-        <img className={`absolute bottom-0 right-0 max-h-full ${leftPaw ? 'opacity-0' : 'opacity-100'}`} src={Left} alt=''/>
-        <img className={`absolute bottom-0 right-0 max-h-full ${!leftPaw ? 'opacity-0' : 'opacity-100'}`} src={LeftDown} alt=''/>
+        <Image className='max-h-full' src='/typing-animation/table.png' alt='' width={701} height={496} />
+        <Image className={`absolute bottom-0 right-0 max-h-full ${rightPaw ? 'opacity-0' : 'opacity-100'}`} src='/typing-animation/right_up.png' alt='' width={701} height={496} />
+        <Image className={`absolute bottom-0 right-0 max-h-full ${!rightPaw ? 'opacity-0' : 'opacity-100'}`} src='/typing-animation/right_down.png' alt='' width={701} height={496} />
+        <Image className='absolute bottom-0 right-0 max-h-full' src='/typing-animation/body.png' alt='' width={701} height={496} />
+        <Image className={`absolute bottom-0 right-0 max-h-full ${leftPaw ? 'opacity-0' : 'opacity-100'}`} src='/typing-animation/left_up.png' alt='' width={701} height={496} />
+        <Image className={`absolute bottom-0 right-0 max-h-full ${!leftPaw ? 'opacity-0' : 'opacity-100'}`} src='/typing-animation/left_down.png' alt='' width={701} height={496} />
       </div>
     </div>
   )

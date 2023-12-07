@@ -1,15 +1,24 @@
 import React, {useState} from "react";
 import EmailFinish from "@/components/email/EmailFinish";
 
-const EmailGame = ({ setIsActive }: {setIsActive: (active: boolean) => void}) => {
+type Stat = {
+  accuracy: number
+  time: number
+  cpm: number
+  wpm: number
+  errors: number
+}
+
+const EmailGame = ({setIsActive}: { setIsActive: (active: boolean) => void }) => {
   const [startTime, setStartTime] = useState<Date | null>(null)
-  const [time, setTime] = useState(0)
 
   const [typedCharacters, setTypedCharacters] = useState(0)
   const [currentWordIndex, setCurrentWordIndex] = useState(0)
   const [input, setInput] = useState('')
   const [correctInput, setCorrectInput] = useState('')
   const [isCorrect, setIsCorrect] = useState(true)
+
+  const [stat, setStat] = useState<Stat | null>(null)
 
   const quote = 'meow meow meow'.split(' ')
 
@@ -18,13 +27,28 @@ const EmailGame = ({ setIsActive }: {setIsActive: (active: boolean) => void}) =>
     setCurrentWordIndex(0)
     setTypedCharacters(0)
     setStartTime(null)
-    setTime(0)
+    setStat(null)
+  }
+
+  const recordStat = ({cpm, wpm, accuracy}: Partial<Stat>) => {
+    let stats = []
+    const lsStats = localStorage.getItem('stats')
+    if (lsStats) {
+      stats = JSON.parse(lsStats)
+    }
+    stats.push({wpm, cpm, accuracy, date: new Date()})
+    stats.sort((a: Stat, b: Stat) => a.cpm > b.cpm ? -1 : 1)
+    localStorage.setItem('stats', JSON.stringify(stats.slice(0, 10)))
   }
 
   const endGame = () => {
-    if (startTime) {
-      setTime(((new Date()).getTime() - startTime.getTime()) / 1000)
-    }
+    const time = ((new Date()).getTime() - startTime!.getTime()) / 1000
+    const errors = typedCharacters - quote.join('').length
+    const accuracy = Math.round((quote.join('').length / typedCharacters) * 100)
+    const cpm = Math.round(((typedCharacters / time) * 60));
+    const wpm = Math.round((((typedCharacters / 5) / time) * 60));
+    setStat({time, errors, cpm, wpm, accuracy})
+    recordStat({ cpm, wpm, accuracy })
     setIsActive(false)
   }
 
@@ -56,25 +80,16 @@ const EmailGame = ({ setIsActive }: {setIsActive: (active: boolean) => void}) =>
     }
   }
 
-  const errors = typedCharacters - quote.join('').length
-  const accuracy = Math.round((quote.join('').length / typedCharacters) * 100)
-  const cpm = Math.round(((typedCharacters / time) * 60));
-  const wpm = Math.round((((typedCharacters / 5) / time) * 60));
-
   const onFocus = () => {
     startGame()
     setIsActive(true)
   }
   const onBlur = () => setIsActive(false)
 
-  if (time) return (
+  if (stat) return (
     <EmailFinish
-      time={time}
-      accuracy={accuracy}
+      stat={stat}
       onRestart={startGame}
-      wpm={wpm}
-      cpm={cpm}
-      errors={errors}
     />
   )
 
@@ -100,7 +115,8 @@ const EmailGame = ({ setIsActive }: {setIsActive: (active: boolean) => void}) =>
               )
             }
 
-            return (<span key={`${word}${index}`} className={`${index < currentWordIndex && 'text-success-500'}`}> {word} </span>)
+            return (<span key={`${word}${index}`}
+                          className={`${index < currentWordIndex && 'text-success-500'}`}> {word} </span>)
           })}
         </p>
       </div>
@@ -115,6 +131,6 @@ const EmailGame = ({ setIsActive }: {setIsActive: (active: boolean) => void}) =>
       />
     </>
   )
-} 
+}
 
 export default EmailGame

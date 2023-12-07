@@ -4,7 +4,7 @@
 
 @layer base{
   body {
-    @apply font-body !font-[600] tracking-widest text-[14px]
+    @apply font-body !font-[600] tracking-widest text-16
   }
 
   .container {

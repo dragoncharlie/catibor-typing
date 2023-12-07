@@ -8,6 +8,12 @@ const Header = () => {
         <Link className='hover:text-primary-500' href='/'>
           Catibor
         </Link>
+
+        <div>
+          <Link className='hover:text-primary-500' href='/statistics'>
+            My stats
+          </Link>
+        </div>
       </div>
     </header>
   )

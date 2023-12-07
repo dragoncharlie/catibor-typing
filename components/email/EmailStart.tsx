@@ -11,6 +11,7 @@ const EmailStart = ({onStart}: EmailStartProps) => (
         className='min-w-[180px] border-2 px-16 py-8 rounded-[20%_3%_38%_34%_/_4%_32%_5%_3%]'
         onClick={onStart}
       >
+        {/* eslint-disable-next-line react/no-unescaped-entities */}
         Let's compose
       </button>
     </div>

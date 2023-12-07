@@ -3,7 +3,7 @@ type EmailFinishProps = {
   time: number
   cpm: number
   wpm: number
-  errors:number,
+  errors:number
   onRestart: () => void
 }
 

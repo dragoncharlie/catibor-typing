@@ -2,6 +2,7 @@ import React from 'react'
 import './globals.css'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 import { Neucha } from 'next/font/google'
 const neucha = Neucha({ weight: '400', subsets: ['latin', 'cyrillic'], preload: true })
@@ -25,6 +26,7 @@ const RootLayout = ({children}: { children: React.ReactNode }) => {
           </main>
           <Footer/>
         </div>
+        <SpeedInsights />
       </body>
     </html>
   )

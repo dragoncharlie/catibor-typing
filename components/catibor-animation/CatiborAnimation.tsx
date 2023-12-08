@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import {useEffect, useState} from 'react';
 import Image from 'next/image'
 
 const LEFT_PAW = ['q','w','e','r','t','a','s','d','f','g','z','x','c','v','b','backquote', '1','2','3','4','5', 'space']
@@ -52,8 +52,8 @@ const CatiborAnimation = ({ className = '', active }: CatiborAnimationProps) => 
   }
 
   const removeListeners = () => {
-    document.removeEventListener("keydown", onKeyDown);
-    document.removeEventListener("keyup", onKeyUp);
+    document.removeEventListener('keydown', onKeyDown);
+    document.removeEventListener('keyup', onKeyUp);
 
     left = 0
     right = 0
@@ -64,8 +64,8 @@ const CatiborAnimation = ({ className = '', active }: CatiborAnimationProps) => 
 
   useEffect(() => {
     if (active) {
-      document.addEventListener("keydown", onKeyDown);
-      document.addEventListener("keyup", onKeyUp);
+      document.addEventListener('keydown', onKeyDown);
+      document.addEventListener('keyup', onKeyUp);
     } else {
       removeListeners()
     }

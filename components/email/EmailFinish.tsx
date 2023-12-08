@@ -1,6 +1,6 @@
 type EmailFinishProps = {
   stat: {
-    accuracy: number
+    accuracy: string
     time: number
     cpm: number
     wpm: number
@@ -23,7 +23,7 @@ const EmailFinish = ({stat: {accuracy, time, cpm, wpm, errors}, onRestart}: Emai
       </div>
       <div className='flex justify-center mt-24'>
         <button
-          className='min-w-[180px] border-2 px-16 py-8 rounded-[20%_3%_38%_34%_/_4%_32%_5%_3%]'
+          className='button'
           onClick={onRestart}
         >
           Compose another letter

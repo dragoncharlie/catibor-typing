@@ -9,9 +9,12 @@ const Header = () => {
           Catibor
         </Link>
 
-        <div>
+        <div className='flex gap-16'>
           <Link className='hover:text-primary-500' href='/statistics'>
             My stats
+          </Link>
+          <Link href='https://github.com/dragoncharlie/catibor-typing/issues' target='_blank'>
+            Bug!
           </Link>
         </div>
       </div>

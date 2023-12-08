@@ -1,7 +1,7 @@
 'use client'
-import EmailWrap from "@/components/email/EmailWrap";
-import {useEffect, useState} from "react";
-import Link from "next/link";
+import EmailWrap from '@/components/email/EmailWrap';
+import {useEffect, useState} from 'react';
+import Link from 'next/link';
 
 type Stat = {
   wpm: number
@@ -60,7 +60,7 @@ const Statistics = () => {
           )}
           <div className='flex justify-center mt-24'>
             <Link
-              className='text-center min-w-[180px] border-2 px-16 py-8 rounded-[20%_3%_38%_34%_/_4%_32%_5%_3%]'
+              className='button'
               href='/'
             >
               {stats.length ? 'Compose another letter' : 'GO!'}

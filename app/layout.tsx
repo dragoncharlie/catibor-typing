@@ -1,7 +1,7 @@
-import React from "react"
+import React from 'react'
 import './globals.css'
-import Header from "@/components/layout/Header"
-import Footer from "@/components/layout/Footer"
+import Header from '@/components/layout/Header'
+import Footer from '@/components/layout/Footer'
 
 import { Neucha } from 'next/font/google'
 const neucha = Neucha({ weight: '400', subsets: ['latin', 'cyrillic'], preload: true })

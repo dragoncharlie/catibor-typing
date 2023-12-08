@@ -1,8 +1,10 @@
-import React, {useState} from "react";
-import EmailFinish from "@/components/email/EmailFinish";
+import React, {useEffect, useState} from 'react';
+import EmailFinish from '@/components/email/EmailFinish';
+
+import emails from './emails.json'
 
 type Stat = {
-  accuracy: number
+  accuracy: string
   time: number
   cpm: number
   wpm: number
@@ -10,27 +12,82 @@ type Stat = {
 }
 
 const EmailGame = ({setIsActive}: { setIsActive: (active: boolean) => void }) => {
+  // start game
   const [startTime, setStartTime] = useState<Date | null>(null)
+  const [email, setEmail] = useState(['meow'])
 
+  // in progress game
   const [typedCharacters, setTypedCharacters] = useState(0)
   const [currentWordIndex, setCurrentWordIndex] = useState(0)
   const [input, setInput] = useState('')
   const [correctInput, setCorrectInput] = useState('')
   const [isCorrect, setIsCorrect] = useState(true)
 
+  // finish game
   const [stat, setStat] = useState<Stat | null>(null)
 
-  const quote = 'meow meow meow'.split(' ')
+  const getRandomInt = (max: number) => {
+    return Math.floor(Math.random() * max);
+  }
 
   const startGame = () => {
-    setInput('')
-    setCurrentWordIndex(0)
+    const emailIndex = getRandomInt(emails.length)
+    // filter and map in case if there are extra spaces
+    const formattedEmail = emails[emailIndex].trim().split(' ').map(word => word.trim()).filter(word => !!word)
+    setEmail(formattedEmail)
+
     setTypedCharacters(0)
     setStartTime(null)
     setStat(null)
   }
 
-  const recordStat = ({cpm, wpm, accuracy}: Partial<Stat>) => {
+  useEffect(() => {
+    startGame()
+  }, []);
+
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!startTime) setStartTime(new Date())
+
+    const value = e.target.value
+    const currentWord = email[currentWordIndex]
+
+    if (value.length > input.length) {
+      setTypedCharacters(state => state + 1)
+    }
+
+    if (currentWord === value.trim() && currentWord !== value) {
+      setCurrentWordIndex(currentWordIndex + 1)
+      setInput('')
+      setCorrectInput('')
+    } else if (value !== input) {
+      setInput(value)
+      if (currentWord.startsWith(value)) {
+        setIsCorrect(true)
+        setCorrectInput(value)
+      } else {
+        setIsCorrect(false)
+      }
+    }
+
+    if (value === currentWord && currentWordIndex === email.length - 1) {
+      endGame()
+    }
+  }
+
+  const onFocus = () => {
+    setIsActive(true)
+  }
+  const onBlur = () => setIsActive(false)
+
+  const recordStat = () => {
+    const emailLength = email.join(' ').length - 1
+    const time = ((new Date()).getTime() - startTime!.getTime()) / 1000
+    const errors = typedCharacters - emailLength
+    const accuracy = ((emailLength / typedCharacters) * 100).toFixed(2)
+    const cpm = Math.round(((typedCharacters / time) * 60));
+    const wpm = Math.round((((typedCharacters / 5) / time) * 60));
+    setStat({time, errors, cpm, wpm, accuracy})
+
     let stats = []
     const lsStats = localStorage.getItem('stats')
     if (lsStats) {
@@ -42,49 +99,13 @@ const EmailGame = ({setIsActive}: { setIsActive: (active: boolean) => void }) =>
   }
 
   const endGame = () => {
-    const time = ((new Date()).getTime() - startTime!.getTime()) / 1000
-    const errors = typedCharacters - quote.join('').length
-    const accuracy = Math.round((quote.join('').length / typedCharacters) * 100)
-    const cpm = Math.round(((typedCharacters / time) * 60));
-    const wpm = Math.round((((typedCharacters / 5) / time) * 60));
-    setStat({time, errors, cpm, wpm, accuracy})
-    recordStat({ cpm, wpm, accuracy })
+    recordStat()
+
     setIsActive(false)
+    setInput('')
+    setCorrectInput('')
+    setCurrentWordIndex(0)
   }
-
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (!startTime) setStartTime(new Date())
-    const value = e.target.value.trim()
-    if (value !== input) {
-      if (value.length > input.length) {
-        setTypedCharacters(typedCharacters + 1)
-      }
-      setInput(value)
-      if (quote[currentWordIndex].startsWith(value)) {
-        setIsCorrect(true)
-        setCorrectInput(value)
-      } else {
-        setIsCorrect(false)
-      }
-    }
-  }
-
-  const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.code.toLowerCase() === 'space' && input === quote[currentWordIndex]) {
-      if (currentWordIndex + 1 === quote.length) {
-        endGame()
-      }
-      setCurrentWordIndex(currentWordIndex + 1)
-      setInput('')
-      setCorrectInput('')
-    }
-  }
-
-  const onFocus = () => {
-    startGame()
-    setIsActive(true)
-  }
-  const onBlur = () => setIsActive(false)
 
   if (stat) return (
     <EmailFinish
@@ -97,27 +118,23 @@ const EmailGame = ({setIsActive}: { setIsActive: (active: boolean) => void }) =>
     <>
       <div className='p-16'>
         <p>
-          {quote.map((word, index) => {
-
-            if (index === currentWordIndex) {
-              return (
-                <span key={`${word}${index}`}>
-                  <span className='underline font-bold text-success-500'>
-                    {word.slice(0, correctInput.length)}
-                  </span>
-                  <span className='underline font-bold text-surface-50 bg-error-500'>
-                    {word.slice(correctInput.length, input.length)}
-                  </span>
-                  <span className='underline font-bold'>
-                    {word.slice(input.length)}
-                  </span>
-                </span>
-              )
-            }
-
-            return (<span key={`${word}${index}`}
-                          className={`${index < currentWordIndex && 'text-success-500'}`}> {word} </span>)
-          })}
+          {!!currentWordIndex && email.slice(0, currentWordIndex).map((word, index) => (
+            <span key={`${word}${index}`} className={`${index < currentWordIndex && 'text-success-500'}`}>{word} </span>
+          ))}
+          <span>
+            <span className='underline font-bold text-success-500'>
+              {email[currentWordIndex].slice(0, correctInput.length)}
+            </span>
+            <span className='underline font-bold text-surface-50 bg-error-500'>
+              {email[currentWordIndex].slice(correctInput.length, input.length)}
+            </span>
+            <span className='underline font-bold'>
+              {email[currentWordIndex].slice(input.length)}
+            </span>
+          </span>
+          {email.slice(currentWordIndex + 1).map((word, index) => (
+            <span key={`${word}${index}`}> {word}</span>
+          ))}
         </p>
       </div>
       <input
@@ -127,7 +144,6 @@ const EmailGame = ({setIsActive}: { setIsActive: (active: boolean) => void }) =>
         onBlur={onBlur}
         value={input}
         onChange={onChange}
-        onKeyDown={onKeyDown}
       />
     </>
   )

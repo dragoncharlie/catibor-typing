@@ -4,7 +4,7 @@
 
 @layer base{
   body {
-    @apply font-body !font-[600] tracking-widest text-16
+    @apply font-body !font-[600] tracking-widest text-16 leading-130
   }
 
   .container {
@@ -13,5 +13,11 @@
 
   a:hover {
     @apply text-primary-500
+  }
+}
+
+@layer components {
+  .button {
+    @apply text-center min-w-[180px] border-2 px-16 py-8 rounded-[20%_3%_38%_34%_/_4%_32%_5%_3%] hover:text-primary-500
   }
 }

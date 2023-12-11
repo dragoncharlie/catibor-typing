@@ -19,7 +19,7 @@ const RootLayout = ({children}: { children: React.ReactNode }) => {
       <body className={neucha.className}>
         <div className='flex flex-col min-h-screen'>
           <Header/>
-          <main className='grow flex flex-col py-16'>
+          <main className='grow flex flex-col pt-56 pb-16'>
             <div className='container grow flex flex-col'>
               {children}
             </div>

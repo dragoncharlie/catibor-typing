@@ -10,10 +10,10 @@ const getKey = (event: KeyboardEvent) => {
 
 type CatiborAnimationProps = {
   className?: string
-  active: boolean
+  type: string
 }
 
-const CatiborAnimation = ({ className = '', active }: CatiborAnimationProps) => {
+const CatiborAnimation = ({ className = '', type }: CatiborAnimationProps) => {
   const [leftPaw, setLeftPaw] = useState(0)
   const [rightPaw, setRightPaw] = useState(0)
   let left = 0
@@ -21,7 +21,6 @@ const CatiborAnimation = ({ className = '', active }: CatiborAnimationProps) => 
   let pressed: {[key:string]: boolean} = {}
 
   const onKeyDown = (event: KeyboardEvent) => {
-    // console.log(event)
     const key = getKey(event)
     if (pressed[key]) return
 
@@ -63,7 +62,7 @@ const CatiborAnimation = ({ className = '', active }: CatiborAnimationProps) => 
   }
 
   useEffect(() => {
-    if (active) {
+    if (type === 'typing') {
       document.addEventListener('keydown', onKeyDown);
       document.addEventListener('keyup', onKeyUp);
     } else {
@@ -73,17 +72,17 @@ const CatiborAnimation = ({ className = '', active }: CatiborAnimationProps) => 
     return () => {
       removeListeners()
     }
-  }, [active]);
+  }, [type]);
 
   return (
     <div className={className}>
       <div className='relative flex justify-end items-end'>
-        <Image className='max-h-full' src='/typing-animation/table.png' alt='' width={701} height={496} />
-        <Image className={`absolute bottom-0 right-0 max-h-full ${rightPaw ? 'opacity-0' : 'opacity-100'}`} src='/typing-animation/right_up.png' alt='' width={701} height={496} />
-        <Image className={`absolute bottom-0 right-0 max-h-full ${!rightPaw ? 'opacity-0' : 'opacity-100'}`} src='/typing-animation/right_down.png' alt='' width={701} height={496} />
-        <Image className='absolute bottom-0 right-0 max-h-full' src='/typing-animation/body.png' alt='' width={701} height={496} />
-        <Image className={`absolute bottom-0 right-0 max-h-full ${leftPaw ? 'opacity-0' : 'opacity-100'}`} src='/typing-animation/left_up.png' alt='' width={701} height={496} />
-        <Image className={`absolute bottom-0 right-0 max-h-full ${!leftPaw ? 'opacity-0' : 'opacity-100'}`} src='/typing-animation/left_down.png' alt='' width={701} height={496} />
+        <Image className='max-h-full object-right-bottom object-contain' src='/typing-animation/table.png' alt='' width={701} height={496} />
+        <Image className={`absolute bottom-0 right-0 max-h-full object-right-bottom object-contain ${rightPaw ? 'opacity-0' : 'opacity-100'}`} src='/typing-animation/right_up.png' alt='' width={701} height={496} />
+        <Image className={`absolute bottom-0 right-0 max-h-full object-right-bottom object-contain ${!rightPaw ? 'opacity-0' : 'opacity-100'}`} src='/typing-animation/right_down.png' alt='' width={701} height={496} />
+        <Image className='absolute bottom-0 right-0 max-h-full object-right-bottom object-contain' src='/typing-animation/body.png' alt='' width={701} height={496} />
+        <Image className={`absolute bottom-0 right-0 max-h-full object-right-bottom object-contain ${leftPaw ? 'opacity-0' : 'opacity-100'}`} src='/typing-animation/left_up.png' alt='' width={701} height={496} />
+        <Image className={`absolute bottom-0 right-0 max-h-full object-right-bottom object-contain ${!leftPaw ? 'opacity-0' : 'opacity-100'}`} src='/typing-animation/left_down.png' alt='' width={701} height={496} />
       </div>
     </div>
   )

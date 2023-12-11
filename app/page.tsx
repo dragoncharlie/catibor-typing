@@ -8,18 +8,22 @@ import EmailGame from '@/components/email/EmailGame';
 
 const Home = () => {
   const [isStarted, setIsStarted] = useState(false)
-  const [isActive, setIsActive] = useState(false)
+  const [animationType, setAnimationType] = useState('default')
+
+  const stopGame = () => {
+    setIsStarted(false)
+  }
 
   return (
-    <div className='flex flex-col grow max-w-[960px] mx-auto w-full'>
-      <div className='flex relative grow'>
-        <div className='w-1/2 z-10'>
+    <div className='flex flex-col grow max-w-[960px] m-auto w-full max-h-[720px]'>
+      <div className='flex relative grow max-h-[calc(100vh_-_56px_-_56px)] min-h-[320px]'>
+        <div className='w-3/5 lg:w-1/2 z-10'>
           <EmailWrap>
             {!isStarted && <EmailStart onStart={() => setIsStarted(true)} />}
-            {isStarted && <EmailGame setIsActive={setIsActive} />}
+            {isStarted && <EmailGame setAnimationType={setAnimationType} stopGame={stopGame} />}
           </EmailWrap>
         </div>
-        <CatiborAnimation className='pointer-events-none z-0 absolute bottom-0 right-0 translate-x-32 translate-y-16 w-4/5 max-h-full flex' active={isActive}/>
+        <CatiborAnimation className='pointer-events-none z-0 absolute bottom-0 right-0 border-b-2 translate-x-32 translate-y-[18px] w-4/5 max-h-full flex' type={animationType}/>
       </div>
     </div>
   )

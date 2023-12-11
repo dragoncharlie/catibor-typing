@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import EmailFinish from '@/components/email/EmailFinish';
 
 import emails from './emails.json'
@@ -11,7 +11,12 @@ type Stat = {
   errors: number
 }
 
-const EmailGame = ({setIsActive}: { setIsActive: (active: boolean) => void }) => {
+type EmailGameProps = {
+  setAnimationType: (type: string) => void
+  stopGame: () => void
+}
+
+const EmailGame = ({setAnimationType, stopGame}: EmailGameProps) => {
   // start game
   const [startTime, setStartTime] = useState<Date | null>(null)
   const [email, setEmail] = useState(['meow'])
@@ -26,6 +31,7 @@ const EmailGame = ({setIsActive}: { setIsActive: (active: boolean) => void }) =>
   // finish game
   const [stat, setStat] = useState<Stat | null>(null)
 
+  // start game
   const getRandomInt = (max: number) => {
     return Math.floor(Math.random() * max);
   }
@@ -36,6 +42,9 @@ const EmailGame = ({setIsActive}: { setIsActive: (active: boolean) => void }) =>
     const formattedEmail = emails[emailIndex].trim().split(' ').map(word => word.trim()).filter(word => !!word)
     setEmail(formattedEmail)
 
+    setInput('')
+    setCorrectInput('')
+    setCurrentWordIndex(0)
     setTypedCharacters(0)
     setStartTime(null)
     setStat(null)
@@ -44,6 +53,15 @@ const EmailGame = ({setIsActive}: { setIsActive: (active: boolean) => void }) =>
   useEffect(() => {
     startGame()
   }, []);
+
+  // in progress game
+  const currentWordRef = useRef<HTMLSpanElement>(null)
+
+  useEffect(() => {
+    if (currentWordRef.current) {
+      currentWordRef.current.scrollIntoView({block: 'center'})
+    }
+  }, [currentWordIndex])
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!startTime) setStartTime(new Date())
@@ -75,10 +93,11 @@ const EmailGame = ({setIsActive}: { setIsActive: (active: boolean) => void }) =>
   }
 
   const onFocus = () => {
-    setIsActive(true)
+    setAnimationType('typing')
   }
-  const onBlur = () => setIsActive(false)
-
+  const onBlur = () => setAnimationType('default')
+  
+  // finish game
   const recordStat = () => {
     const emailLength = email.join(' ').length - 1
     const time = ((new Date()).getTime() - startTime!.getTime()) / 1000
@@ -101,10 +120,7 @@ const EmailGame = ({setIsActive}: { setIsActive: (active: boolean) => void }) =>
   const endGame = () => {
     recordStat()
 
-    setIsActive(false)
-    setInput('')
-    setCorrectInput('')
-    setCurrentWordIndex(0)
+    setAnimationType('default')
   }
 
   if (stat) return (
@@ -113,29 +129,38 @@ const EmailGame = ({setIsActive}: { setIsActive: (active: boolean) => void }) =>
       onRestart={startGame}
     />
   )
-
+  
   return (
     <>
-      <div className='p-16'>
-        <p>
-          {!!currentWordIndex && email.slice(0, currentWordIndex).map((word, index) => (
-            <span key={`${word}${index}`} className={`${index < currentWordIndex && 'text-success-500'}`}>{word} </span>
-          ))}
-          <span>
-            <span className='underline font-bold text-success-500'>
-              {email[currentWordIndex].slice(0, correctInput.length)}
+      <button
+        className='button absolute top-8 right-8 w-32 h-32 min-w-0 p-0'
+        onClick={stopGame}
+        title='Stop writing'
+      >
+        X
+      </button>
+      <div className='grow overflow-hidden'>
+        <div className='h-full overflow-auto p-16'>
+          <p>
+            {!!currentWordIndex && email.slice(0, currentWordIndex).map((word, index) => (
+              <span key={`${word}${index}`} className={`${index < currentWordIndex && 'text-success-500'}`}>{word} </span>
+            ))}
+            <span ref={currentWordRef}>
+              <span className='underline font-bold text-success-500'>
+                {email[currentWordIndex].slice(0, correctInput.length)}
+              </span>
+              <span className='underline font-bold text-surface-50 bg-error-500'>
+                {email[currentWordIndex].slice(correctInput.length, input.length)}
+              </span>
+              <span className='underline font-bold'>
+                {email[currentWordIndex].slice(input.length)}
+              </span>
             </span>
-            <span className='underline font-bold text-surface-50 bg-error-500'>
-              {email[currentWordIndex].slice(correctInput.length, input.length)}
-            </span>
-            <span className='underline font-bold'>
-              {email[currentWordIndex].slice(input.length)}
-            </span>
-          </span>
-          {email.slice(currentWordIndex + 1).map((word, index) => (
-            <span key={`${word}${index}`}> {word}</span>
-          ))}
-        </p>
+            {email.slice(currentWordIndex + 1).map((word, index) => (
+              <span key={`${word}${index}`}> {word}</span>
+            ))}
+          </p>
+        </div>
       </div>
       <input
         autoFocus

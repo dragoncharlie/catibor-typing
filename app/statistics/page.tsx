@@ -2,6 +2,7 @@
 import EmailWrap from '@/components/email/EmailWrap';
 import {useEffect, useState} from 'react';
 import Link from 'next/link';
+import Tooltip from "@/components/Tooltip";
 
 type Stat = {
   wpm: number
@@ -33,10 +34,20 @@ const Statistics = () => {
                 <thead>
                   <tr className='text-14 text-surface-800'>
                     <th className={cellClassName} />
-                    <th className={cellClassName}>WPM</th>
-                    <th className={cellClassName}>CPM</th>
+                    <th className={cellClassName}>
+                      <span className='flex gap-4 justify-end'>
+                        WPM
+                        <Tooltip text='Words per&nbsp;minute (5&nbsp;characters per&nbsp;word)'>?</Tooltip>
+                      </span>
+                    </th>
+                    <th className={cellClassName}>
+                      <span className='flex gap-4 justify-end'>
+                        CPM
+                        <Tooltip text='Characters (symbols) per&nbsp;minute'>?</Tooltip>
+                      </span>
+                    </th>
                     <th className={cellClassName}>Accuracy</th>
-                    <th  className={`${cellClassName} text-start`}>Date</th>
+                    <th className={`${cellClassName} text-start`}>Date</th>
                   </tr>
                 </thead>
                 <tbody>

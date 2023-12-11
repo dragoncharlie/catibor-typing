@@ -1,19 +1,23 @@
+import Link from 'next/link';
+
+const footerLinkClassNames = 'h-full flex items-center focus:outline-primary-500 outline-offset-4'
+
 const Footer = () => {
 
   return (
-    <footer className='py-8 border-t-2 h-40'>
-      <div className='container flex justify-between gap-16'>
+    <footer className='border-t-2 z-10 bg-surface-50'>
+      <div className='container flex justify-between gap-16 py-8 h-40'>
         <p className='text-12'>
           Catibor © 2021 - {new Date().getFullYear()}
         </p>
 
-        <div className='flex gap-16'>
-          <a href='https://t.me/addstickers/Catibor' target='_blank'>
+        <div className='flex gap-16 h-full'>
+          <Link className={footerLinkClassNames} href='https://t.me/addstickers/Catibor' target='_blank'>
             TG stickers
-          </a>
-          <a href='https://aspirity.ru/' target='_blank'>
+          </Link>
+          <Link className={footerLinkClassNames} href='https://aspirity.ru/' target='_blank'>
             Aspirity
-          </a>
+          </Link>
         </div>
       </div>
     </footer>

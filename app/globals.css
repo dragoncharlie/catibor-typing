@@ -8,16 +8,17 @@
   }
 
   .container {
-    @apply px-16 md:px-32 mx-auto !max-w-[1140px]
+    @apply px-16 md:px-32 mx-auto !max-w-[1280px]
   }
 
-  a:hover {
+  a:hover,
+  a:focus {
     @apply text-primary-500
   }
 }
 
 @layer components {
   .button {
-    @apply text-center min-w-[180px] border-2 px-16 py-8 rounded-[20%_3%_38%_34%_/_4%_32%_5%_3%] hover:text-primary-500
+    @apply text-center min-w-[180px] border-2 px-16 py-8 rounded-[20%_3%_38%_34%_/_4%_32%_5%_3%] hover:text-primary-500 focus:text-primary-500 focus:outline-none
   }
 }

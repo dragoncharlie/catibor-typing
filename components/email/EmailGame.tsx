@@ -55,6 +55,7 @@ const EmailGame = ({setAnimationType, stopGame}: EmailGameProps) => {
 
   useEffect(() => {
     startGame()
+    setAnimationType('typing')
   }, []);
 
   // in progress game

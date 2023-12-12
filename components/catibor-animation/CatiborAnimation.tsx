@@ -13,6 +13,8 @@ type CatiborAnimationProps = {
   type: string
 }
 
+const imageClassName = 'absolute bottom-0 right-0 max-h-full object-right-bottom object-contain'
+
 const CatiborAnimation = ({ className = '', type }: CatiborAnimationProps) => {
   const [leftPaw, setLeftPaw] = useState(0)
   const [rightPaw, setRightPaw] = useState(0)
@@ -74,15 +76,18 @@ const CatiborAnimation = ({ className = '', type }: CatiborAnimationProps) => {
     }
   }, [type]);
 
+  const isFinish = type === 'finish'
+
   return (
     <div className={className}>
       <div className='relative flex justify-end items-end'>
         <Image className='max-h-full object-right-bottom object-contain' src='/typing-animation/table.png' alt='' width={701} height={496} />
-        <Image className={`absolute bottom-0 right-0 max-h-full object-right-bottom object-contain ${rightPaw ? 'opacity-0' : 'opacity-100'}`} src='/typing-animation/right_up.png' alt='' width={701} height={496} />
-        <Image className={`absolute bottom-0 right-0 max-h-full object-right-bottom object-contain ${!rightPaw ? 'opacity-0' : 'opacity-100'}`} src='/typing-animation/right_down.png' alt='' width={701} height={496} />
-        <Image className='absolute bottom-0 right-0 max-h-full object-right-bottom object-contain' src='/typing-animation/body.png' alt='' width={701} height={496} />
-        <Image className={`absolute bottom-0 right-0 max-h-full object-right-bottom object-contain ${leftPaw ? 'opacity-0' : 'opacity-100'}`} src='/typing-animation/left_up.png' alt='' width={701} height={496} />
-        <Image className={`absolute bottom-0 right-0 max-h-full object-right-bottom object-contain ${!leftPaw ? 'opacity-0' : 'opacity-100'}`} src='/typing-animation/left_down.png' alt='' width={701} height={496} />
+        <Image className={`${imageClassName} ${!isFinish ? 'opacity-0' : 'opacity-100'}`} src='/typing-animation/sleep.png' alt='' width={701} height={496} />
+        <Image className={`${imageClassName} ${(rightPaw || isFinish) ? 'opacity-0' : 'opacity-100'}`} src='/typing-animation/right_up.png' alt='' width={701} height={496} />
+        <Image className={`${imageClassName} ${(!rightPaw || isFinish) ? 'opacity-0' : 'opacity-100'}`} src='/typing-animation/right_down.png' alt='' width={701} height={496} />
+        <Image className={`${imageClassName} ${isFinish ? 'opacity-0' : 'opacity-100'}`} src='/typing-animation/body.png' alt='' width={701} height={496} />
+        <Image className={`${imageClassName} ${(leftPaw || isFinish) ? 'opacity-0' : 'opacity-100'}`} src='/typing-animation/left_up.png' alt='' width={701} height={496} />
+        <Image className={`${imageClassName} ${(!leftPaw || isFinish) ? 'opacity-0' : 'opacity-100'}`} src='/typing-animation/left_down.png' alt='' width={701} height={496} />
       </div>
     </div>
   )

@@ -33,12 +33,6 @@ const config: Config = {
         900: '#830758',
       },
 
-      secondary: {
-        400: '#F0F0F0',
-        500: '#EBEBEB',
-        600: '#C8C8C8',
-      },
-
       surface: {
         50: '#FFFFFF',
         100: '#FBFBFE',
@@ -90,18 +84,6 @@ const config: Config = {
         800: '#EF6F00',
         900: '#E75403',
       },
-
-      links: {
-        300: '#007AFF',
-        400: '#3B61F3',
-        500: '#0045E6',
-      },
-    },
-    boxShadow: {
-      50: '0px 2px 7px rgba(0, 0, 0, 0.07)',
-      70: '0px 2px 26px rgba(0, 0, 0, 0.07)',
-      100: '0px 0px 4px rgba(232, 48, 158, 0.20)',
-      150: '4px 9px 17px rgba(187, 62, 189, 0.0',
     },
     fontSize: {
       48: '48px',
@@ -138,6 +120,8 @@ const config: Config = {
       52: '52px',
       56: '56px',
       60: '60px',
+      64: '64px',
+      128: '128px'
     }
   },
   plugins: [],

@@ -16,6 +16,8 @@ type EmailGameProps = {
   stopGame: () => void
 }
 
+// TODO add pause when unfocused
+
 const EmailGame = ({setAnimationType, stopGame}: EmailGameProps) => {
   // start game
   const [startTime, setStartTime] = useState<Date | null>(null)
@@ -42,6 +44,7 @@ const EmailGame = ({setAnimationType, stopGame}: EmailGameProps) => {
     const formattedEmail = emails[emailIndex].trim().split(' ').map(word => word.trim()).filter(word => !!word)
     setEmail(formattedEmail)
 
+    setAnimationType('default')
     setInput('')
     setCorrectInput('')
     setCurrentWordIndex(0)
@@ -120,7 +123,7 @@ const EmailGame = ({setAnimationType, stopGame}: EmailGameProps) => {
   const endGame = () => {
     recordStat()
 
-    setAnimationType('default')
+    setAnimationType('finish')
   }
 
   if (stat) return (
@@ -143,25 +146,29 @@ const EmailGame = ({setAnimationType, stopGame}: EmailGameProps) => {
         <div className='h-full overflow-auto p-16'>
           <p>
             {!!currentWordIndex && email.slice(0, currentWordIndex).map((word, index) => (
-              <span key={`${word}${index}`} className={`${index < currentWordIndex && 'text-success-500'}`}>{word} </span>
+              <span key={`${word}${index}`} className={`${index < currentWordIndex && 'text-surface-900'}`}>{word} </span>
             ))}
             <span ref={currentWordRef}>
-              <span className='underline font-bold text-success-500'>
+              <span className='underline font-bold text-surface-900'>
                 {email[currentWordIndex].slice(0, correctInput.length)}
               </span>
               <span className='underline font-bold text-surface-50 bg-error-500'>
                 {email[currentWordIndex].slice(correctInput.length, input.length)}
               </span>
-              <span className='underline font-bold'>
+              <span className='underline font-bold text-error-500'>
+                {input.slice(email[currentWordIndex].length)}
+              </span>
+              <span className='underline font-bold text-surface-600'>
                 {email[currentWordIndex].slice(input.length)}
               </span>
             </span>
             {email.slice(currentWordIndex + 1).map((word, index) => (
-              <span key={`${word}${index}`}> {word}</span>
+              <span className='text-surface-600' key={`${word}${index}`}> {word}</span>
             ))}
           </p>
         </div>
       </div>
+      {/* TODO get rid of input */}
       <input
         autoFocus
         className={`mt-auto border-t-2 border-surface-900 px-16 py-8 w-full focus:outline-none ${!isCorrect && 'text-error-500'}`}

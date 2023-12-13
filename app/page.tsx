@@ -23,8 +23,7 @@ const Home = () => {
             {isStarted && <EmailGame setAnimationType={setAnimationType} stopGame={stopGame} />}
           </EmailWrap>
         </div>
-
-          <CatiborAnimation className='pointer-events-none z-0 max-h-full flex justify-end' type={animationType}/>
+          <CatiborAnimation type={animationType}/>
       </div>
     </div>
   )

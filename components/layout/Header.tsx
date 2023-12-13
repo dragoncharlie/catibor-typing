@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import Image from "next/image";
 
 const headerLinkClassNames = 'h-full flex items-center focus:outline-primary-500 outline-offset-4 gap-4'
 
@@ -14,11 +13,9 @@ const Header = () => {
 
         <div className='flex gap-16 h-full'>
           <Link className={headerLinkClassNames} href='/statistics'>
-            <Image className='h-24 w-24' src='/typing-animation/achivment.png' alt='' width={64} height={64} />
             My stats
           </Link>
           <Link className={headerLinkClassNames} href='https://github.com/dragoncharlie/catibor-typing/issues' target='_blank'>
-            <Image className='h-24 w-24' src='/typing-animation/bug.png' alt='' width={64} height={64} />
             Bug!
           </Link>
         </div>

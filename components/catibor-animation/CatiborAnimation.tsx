@@ -9,13 +9,12 @@ const getKey = (event: KeyboardEvent) => {
 }
 
 type CatiborAnimationProps = {
-  className?: string
   type: string
 }
 
 const imageClassName = 'absolute bottom-0 right-0 max-h-full object-right-bottom object-contain'
 
-const CatiborAnimation = ({className = '', type}: CatiborAnimationProps) => {
+const CatiborAnimation = ({type}: CatiborAnimationProps) => {
   const [leftPaw, setLeftPaw] = useState(0)
   const [rightPaw, setRightPaw] = useState(0)
   let left = 0
@@ -79,8 +78,8 @@ const CatiborAnimation = ({className = '', type}: CatiborAnimationProps) => {
   const isFinish = type === 'finish'
 
   return (
-    <div className='border-2 absolute bottom-0 right-0 max-w-[760px] w-full'>
-      <div className='border-b-2 w-full top-0 left-0 text-12 px-16 py-4 h-52 flex items-center'>
+    <div className='border-2 absolute bottom-0 right-0 max-w-[740px] w-[calc(100%_-_32px)] max-h-[calc(100vh_-_56px_-_56px_-_32px)] overflow-hidden flex flex-col'>
+      <div className='border-b-2 w-full top-0 left-0 text-12 px-16 py-4 h-52 flex items-center shrink-0'>
         <p>
           catibor.exe
           {isFinish && <span className='ml-4'>(not working)</span>}
@@ -89,51 +88,55 @@ const CatiborAnimation = ({className = '', type}: CatiborAnimationProps) => {
           X
         </button>
       </div>
-      <div className={className}>
-        <div className='relative flex justify-end items-end'>
-          <Image
-            className='max-h-full object-right-bottom object-contain'
-            src='/typing-animation/table.png'
-            alt=''
-            width={701}
-            height={496}/>
-          <Image
-            className={`${imageClassName} ${!isFinish ? 'opacity-0' : 'opacity-100'}`}
-            src='/typing-animation/sleep.png'
-            alt=''
-            width={701}
-            height={496}/>
-          <Image
-            className={`${imageClassName} ${(rightPaw || isFinish) ? 'opacity-0' : 'opacity-100'}`}
-            src='/typing-animation/right_up.png'
-            alt=''
-            width={701}
-            height={496}/>
-          <Image
-            className={`${imageClassName} ${(!rightPaw || isFinish) ? 'opacity-0' : 'opacity-100'}`}
-            src='/typing-animation/right_down.png'
-            alt=''
-            width={701}
-            height={496}/>
-          <Image
-            className={`${imageClassName} ${isFinish ? 'opacity-0' : 'opacity-100'}`}
-            src='/typing-animation/body.png'
-            alt=''
-            width={701}
-            height={496}/>
-          <Image
-            className={`${imageClassName} ${(leftPaw || isFinish) ? 'opacity-0' : 'opacity-100'}`}
-            src='/typing-animation/left_up.png'
-            alt=''
-            width={701}
-            height={496}/>
-          <Image
-            className={`${imageClassName} ${(!leftPaw || isFinish) ? 'opacity-0' : 'opacity-100'}`}
-            src='/typing-animation/left_down.png'
-            alt=''
-            width={701}
-            height={496}/>
-        </div>
+      <div className='pointer-events-none z-0 max-h-full grow relative flex justify-end items-end'>
+        <Image
+          className='max-h-full object-right-bottom object-contain'
+          src='/typing-animation/table.png'
+          alt=''
+          width={736}
+          height={496}/>
+        <Image
+          className={`${imageClassName} ${!isFinish ? 'opacity-0' : 'opacity-100'}`}
+          src='/typing-animation/sleep.png'
+          alt=''
+          width={701}
+          height={496}/>
+        <Image
+          className={`${imageClassName} ${(rightPaw || isFinish) ? 'opacity-0' : 'opacity-100'}`}
+          src='/typing-animation/right_up.png'
+          alt=''
+          width={701}
+          height={496}/>
+        <Image
+          className={`${imageClassName} ${(!rightPaw || isFinish) ? 'opacity-0' : 'opacity-100'}`}
+          src='/typing-animation/right_down.png'
+          alt=''
+          width={701}
+          height={496}/>
+        <Image
+          className={`${imageClassName} ${isFinish ? 'opacity-0' : 'opacity-100'}`}
+          src='/typing-animation/body.png'
+          alt=''
+          width={701}
+          height={496}/>
+        <Image
+          className={`${imageClassName} ${(leftPaw || isFinish) ? 'opacity-0' : 'opacity-100'}`}
+          src='/typing-animation/left_up.png'
+          alt=''
+          width={701}
+          height={496}/>
+        <Image
+          className={`${imageClassName} ${(!leftPaw || isFinish) ? 'opacity-0' : 'opacity-100'}`}
+          src='/typing-animation/left_down.png'
+          alt=''
+          width={701}
+          height={496}/>
+        <Image
+          className={`${imageClassName} ${isFinish ? 'opacity-0' : 'opacity-100'}`}
+          src='/typing-animation/whiskers.png'
+          alt=''
+          width={701}
+          height={496}/>
       </div>
     </div>
   )

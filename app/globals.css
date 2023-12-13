@@ -11,6 +11,14 @@
     @apply px-16 md:px-32 mx-auto !max-w-[1280px]
   }
 
+  ::-moz-selection { /* Code for Firefox */
+    @apply bg-primary-500 text-surface-50
+  }
+
+  ::selection {
+    @apply bg-primary-500 text-surface-50
+  }
+
   a:hover,
   a:focus {
     @apply text-primary-500

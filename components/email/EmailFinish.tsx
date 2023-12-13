@@ -1,5 +1,4 @@
 import Tooltip from "@/components/Tooltip";
-import Image from "next/image";
 
 type EmailFinishProps = {
   stat: {
@@ -17,7 +16,6 @@ const EmailFinish = ({stat: {accuracy, time, cpm, wpm, errors}, onRestart}: Emai
 
   return (
     <div className='flex flex-col m-auto p-16 max-w-[320px] w-full items-center'>
-      <Image className='h-64 object-contain mb-12' src='/typing-animation/letter.png' alt='' width={256} height={200} />
       <p className='mb-24 text-18 text-center'>Meooowray, <br/> {'the e-mail\'s been sent!'}</p>
       <div className='flex gap-8 w-full'>
         <div className='flex flex-col gap-8 mx-auto w-1/2'>

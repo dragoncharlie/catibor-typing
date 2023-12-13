@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import Image from "next/image";
 
 const footerLinkClassNames = 'h-full flex items-center focus:outline-primary-500 outline-offset-4 gap-4'
 
@@ -14,11 +13,9 @@ const Footer = () => {
 
         <div className='flex gap-16 h-full'>
           <Link className={footerLinkClassNames} href='https://t.me/addstickers/Catibor' target='_blank'>
-            <Image className='h-24 w-24' src='/typing-animation/sticker.png' alt='' width={64} height={64} />
             TG stickers
           </Link>
           <Link className={footerLinkClassNames} href='https://aspirity.ru/' target='_blank'>
-            <Image className='h-24 w-24' src='/typing-animation/aspirity.png' alt='' width={64} height={64} />
             Aspirity
           </Link>
         </div>

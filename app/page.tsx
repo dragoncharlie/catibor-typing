@@ -16,8 +16,8 @@ const Home = () => {
 
   return (
     <div className='flex flex-col grow m-auto w-full max-h-[720px]'>
-      <div className='flex relative grow max-h-[calc(100vh_-_56px_-_56px)] min-h-[340px]'>
-        <div className='w-3/5 lg:w-1/2 z-10 pb-64'>
+      <div className='flex flex-col relative grow max-h-[calc(100vh_-_56px_-_56px)] min-h-[340px]'>
+        <div className='w-3/5 lg:w-1/2 z-10 h-[calc(60vh)] lg:h-[calc(100vh_-_56px_-_56px_-_64px)]'>
           <EmailWrap>
             {!isStarted && <EmailStart onStart={() => setIsStarted(true)} />}
             {isStarted && <EmailGame setAnimationType={setAnimationType} stopGame={stopGame} />}

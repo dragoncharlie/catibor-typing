@@ -88,7 +88,7 @@ const CatiborAnimation = ({type}: CatiborAnimationProps) => {
           X
         </button>
       </div>
-      <div className='pointer-events-none z-0 max-h-full grow relative flex justify-end items-end'>
+      <div className='pointer-events-none z-0 max-h-full grow relative flex justify-end items-end select-none'>
         <Image
           className='max-h-full object-right-bottom object-contain'
           src='/typing-animation/table.png'

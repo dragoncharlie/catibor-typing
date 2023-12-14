@@ -13,12 +13,11 @@ type Stat = {
 
 type EmailGameProps = {
   setAnimationType: (type: string) => void
-  stopGame: () => void
 }
 
 // TODO add pause when unfocused
 
-const EmailGame = ({setAnimationType, stopGame}: EmailGameProps) => {
+const EmailGame = ({setAnimationType}: EmailGameProps) => {
   // start game
   const [startTime, setStartTime] = useState<Date | null>(null)
   const [email, setEmail] = useState(['meow'])
@@ -136,13 +135,6 @@ const EmailGame = ({setAnimationType, stopGame}: EmailGameProps) => {
   
   return (
     <>
-      <button
-        className='button absolute top-8 right-8 w-32 h-32 min-w-0 p-0'
-        onClick={stopGame}
-        title='Stop writing'
-      >
-        X
-      </button>
       <div className='grow overflow-hidden'>
         <div className='h-full overflow-auto p-16'>
           <p>

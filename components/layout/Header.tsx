@@ -12,9 +12,6 @@ const Header = () => {
         </Link>
 
         <div className='flex gap-16 h-full'>
-          <Link className={headerLinkClassNames} href='/statistics'>
-            My stats
-          </Link>
           <Link className={headerLinkClassNames} href='https://github.com/dragoncharlie/catibor-typing/issues' target='_blank'>
             Bug!
           </Link>

@@ -51,6 +51,7 @@ const Home = () => {
         {openedWindows.includes('catibor') && (
           <CatiborWindow
             layer={getLayer('catibor')}
+            onClose={onClose('catibor')}
             onFocus={onOpen('catibor')}
             type={animationType}
           />

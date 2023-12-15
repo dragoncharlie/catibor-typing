@@ -75,42 +75,42 @@ const CatibirTyping = ({type}: CatiborAnimationProps) => {
     }
   }, [type]);
 
-  const isFinish = type === 'finish'
+  const isTyping = ['default', 'typing'].includes(type)
 
   return (
     <>
       <Image
-        className={`${imageClassName} ${(rightPaw || isFinish) ? 'opacity-0' : 'opacity-100'}`}
+        className={`${imageClassName} ${(rightPaw || !isTyping) ? 'opacity-0' : 'opacity-100'}`}
         src='/typing-animation/right_up.png'
         alt=''
         width={736}
         height={496}/>
       <Image
-        className={`${imageClassName} ${(!rightPaw || isFinish) ? 'opacity-0' : 'opacity-100'}`}
+        className={`${imageClassName} ${(!rightPaw || !isTyping) ? 'opacity-0' : 'opacity-100'}`}
         src='/typing-animation/right_down.png'
         alt=''
         width={736}
         height={496}/>
       <Image
-        className={`${imageClassName} ${isFinish ? 'opacity-0' : 'opacity-100'}`}
+        className={`${imageClassName} ${!isTyping ? 'opacity-0' : 'opacity-100'}`}
         src='/typing-animation/body.png'
         alt=''
         width={736}
         height={496}/>
       <Image
-        className={`${imageClassName} ${(leftPaw || isFinish) ? 'opacity-0' : 'opacity-100'}`}
+        className={`${imageClassName} ${(leftPaw || !isTyping) ? 'opacity-0' : 'opacity-100'}`}
         src='/typing-animation/left_up.png'
         alt=''
         width={736}
         height={496}/>
       <Image
-        className={`${imageClassName} ${(!leftPaw || isFinish) ? 'opacity-0' : 'opacity-100'}`}
+        className={`${imageClassName} ${(!leftPaw || !isTyping) ? 'opacity-0' : 'opacity-100'}`}
         src='/typing-animation/left_down.png'
         alt=''
         width={736}
         height={496}/>
       <Image
-        className={`${imageClassName} ${isFinish ? 'opacity-0' : 'opacity-100'}`}
+        className={`${imageClassName} ${!isTyping ? 'opacity-0' : 'opacity-100'}`}
         src='/typing-animation/whiskers.png'
         alt=''
         width={736}

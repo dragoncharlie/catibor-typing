@@ -16,6 +16,11 @@ const CatiborWindow = ({type, onFocus, onClose, layer}: CatiborAnimationProps) =
   const [boop, setBoop] = useState<NodeJS.Timeout | null>(null)
   const [closeCount, setCloseCount] = useState(0)
   const [timeoutId, setTimeoutId] = useState<NodeJS.Timeout | null>(null)
+  const [closed, setClosed] = useState(true)
+
+  useEffect(() => {
+    setClosed(!!localStorage.getItem('...'))
+  }, []);
 
   const clickBoop = () => {
     const id = setTimeout(() => {
@@ -49,14 +54,12 @@ const CatiborWindow = ({type, onFocus, onClose, layer}: CatiborAnimationProps) =
       if (timeoutId) {
         clearTimeout(timeoutId)
       }
-      window.localStorage.setItem('...', '...')
+      localStorage.setItem('...', '...')
       setTimeout(() => {
         onClose()
       }, 1000)
     }
   }
-
-  const closed = window.localStorage.getItem('...')
 
   return (
     <Window

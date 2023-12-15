@@ -30,12 +30,12 @@ const StatisticsWindow = ({onFocus, onClose, layer, updateFlag}: StatisticsWindo
 
   return (
     <Window
-      title='stats.exe'
+      title='stats.xlsx'
       onClose={onClose}
       onFocus={onFocus}
       className={`absolute left-1/2 top-16 -translate-x-1/2 max-w-[520px] ${layer}`}
     >
-      <div className='p-16'>
+      <div className='p-16 overflow-auto'>
         {stats.length ? (
           <>
             <p className='text-center mb-12 text-18'>Best 10 results</p>
@@ -46,13 +46,13 @@ const StatisticsWindow = ({onFocus, onClose, layer, updateFlag}: StatisticsWindo
                 <th className={cellClassName}>
                 <span className='flex gap-4 justify-end'>
                   WPM
-                  <Tooltip text='Words per&nbsp;minute (5&nbsp;characters per&nbsp;word)'>?</Tooltip>
+                  <Tooltip text='Words&nbsp;per&nbsp;minute (5&nbsp;characters&nbsp;per&nbsp;word)'>?</Tooltip>
                 </span>
                 </th>
                 <th className={cellClassName}>
                 <span className='flex gap-4 justify-end'>
                   CPM
-                  <Tooltip text='Characters (symbols) per&nbsp;minute'>?</Tooltip>
+                  <Tooltip text='Characters&nbsp;(symbols) per&nbsp;minute'>?</Tooltip>
                 </span>
                 </th>
                 <th className={cellClassName}>Accuracy</th>
@@ -71,6 +71,7 @@ const StatisticsWindow = ({onFocus, onClose, layer, updateFlag}: StatisticsWindo
               ))}
               </tbody>
             </table>
+            <p className='text-center mt-24 text-18'>{'You\'re doing great! Keep practice ;)'}</p>
           </>
         ) : (
           <>

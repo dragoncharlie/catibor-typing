@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image'
 import Window from "@/components/Window";
-import CatiborTyping from "@/components/catibor-animation/CatiborTyping";
+import CatiborTyping from "@/components/catibor/CatiborTyping";
 
 type CatiborAnimationProps = {
   type: string

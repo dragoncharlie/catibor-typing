@@ -2,6 +2,7 @@ import React, {useEffect, useRef, useState} from 'react';
 import EmailFinish from '@/components/email/EmailFinish';
 
 import emails from './emails.json'
+import {start} from "repl";
 
 type Stat = {
   accuracy: string
@@ -13,11 +14,12 @@ type Stat = {
 
 type EmailGameProps = {
   setAnimationType: (type: string) => void
+  setIsPaused: (paused: boolean) => void
 }
 
 // TODO add pause when unfocused
 
-const EmailGame = ({setAnimationType}: EmailGameProps) => {
+const EmailGame = ({setAnimationType, setIsPaused}: EmailGameProps) => {
   // start game
   const [startTime, setStartTime] = useState<Date | null>(null)
   const [email, setEmail] = useState(['meow'])
@@ -29,8 +31,19 @@ const EmailGame = ({setAnimationType}: EmailGameProps) => {
   const [correctInput, setCorrectInput] = useState('')
   const [isCorrect, setIsCorrect] = useState(true)
 
+  // pause
+  const [pausedTime, setPausedTime] = useState<Date | null>(null)
+
   // finish game
   const [stat, setStat] = useState<Stat | null>(null)
+
+  useEffect(() => {
+    if (pausedTime) {
+      setIsPaused(true)
+    } else {
+      setIsPaused(false)
+    }
+  }, [pausedTime]);
 
   // start game
   const getRandomInt = (max: number) => {
@@ -96,9 +109,19 @@ const EmailGame = ({setAnimationType}: EmailGameProps) => {
   }
 
   const onFocus = () => {
+    if (pausedTime && startTime) {
+      const difference = pausedTime.getTime() - startTime.getTime()
+      setStartTime(new Date((new Date()).getTime() - difference))
+      setPausedTime(null)
+    }
     setAnimationType('typing')
   }
-  const onBlur = () => setAnimationType('default')
+  const onBlur = () => {
+    if (startTime) {
+      setPausedTime(new Date())
+    }
+    setAnimationType('default')
+  }
   
   // finish game
   const recordStat = () => {
@@ -122,7 +145,7 @@ const EmailGame = ({setAnimationType}: EmailGameProps) => {
 
   const endGame = () => {
     recordStat()
-
+    setPausedTime(null)
     setAnimationType('finish')
   }
 
@@ -135,6 +158,10 @@ const EmailGame = ({setAnimationType}: EmailGameProps) => {
   
   return (
     <>
+      <div className='border-b-2 w-full top-0 left-0 text-12 px-16 py-2'>
+        <p><span className='text-surface-800'>To:</span> important@client.com</p>
+        <p><span className='text-surface-800'>From:</span> catibor@aspirity.com</p>
+      </div>
       <div className='grow overflow-hidden'>
         <div className='h-full overflow-auto p-16'>
           <p>

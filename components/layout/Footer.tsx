@@ -15,12 +15,12 @@ const Footer = () => {
           <Link className={footerLinkClassNames} href='https://t.me/addstickers/Catibor' target='_blank'>
             TG stickers
           </Link>
-          <Link className={footerLinkClassNames} href='https://aspirity.ru/' target='_blank'>
-            Aspirity
-          </Link>
-          <Link className={footerLinkClassNames} href='https://github.com/dragoncharlie/catibor-typing/issues' target='_blank'>
-            Bug!
-          </Link>
+          {/*<Link className={footerLinkClassNames} href='https://aspirity.ru/' target='_blank'>*/}
+          {/*  Aspirity*/}
+          {/*</Link>*/}
+          {/*<Link className={footerLinkClassNames} href='https://github.com/dragoncharlie/catibor-typing/issues' target='_blank'>*/}
+          {/*  Bug!*/}
+          {/*</Link>*/}
         </div>
       </div>
     </footer>

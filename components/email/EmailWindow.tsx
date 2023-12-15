@@ -7,10 +7,12 @@ type EmailWindowProps = {
   onFocus: () => void
   onClose: () => void
   setAnimationType: (type: string) => void
+  layer: string
 }
 
-const EmailWindow = ({onFocus, setAnimationType, onClose}: EmailWindowProps) => {
+const EmailWindow = ({onFocus, setAnimationType, onClose, layer}: EmailWindowProps) => {
   const [isStarted, setIsStarted] = useState(false)
+  const [isPaused, setIsPaused] = useState(false)
   const stopGame = () => {
     setIsStarted(false)
     onClose()
@@ -18,16 +20,12 @@ const EmailWindow = ({onFocus, setAnimationType, onClose}: EmailWindowProps) => 
 
   return (
     <Window
-      className='w-full h-full relative max-h-screen'
-      title='mail.exe'
+      className={`absolute top-0 left-0 max-h-screen max-w-[520px] w-3/5 lg:w-1/2 ${layer} h-[calc(60vh)] lg:h-[calc(100%_-_64px)]`}
+      title={`mail.exe ${isPaused ? '(paused)' : ''}`}
       onClose={stopGame}
       onFocus={onFocus}>
-      <div className='border-b-2 w-full top-0 left-0 text-12 px-16 py-2'>
-        <p><span className='text-surface-800'>To:</span> important@client.com</p>
-        <p><span className='text-surface-800'>From:</span> catibor@aspirity.com</p>
-      </div>
       {!isStarted && <EmailStart onStart={() => setIsStarted(true)}/>}
-      {isStarted && <EmailGame setAnimationType={setAnimationType}/>}
+      {isStarted && <EmailGame setIsPaused={setIsPaused} setAnimationType={setAnimationType}/>}
     </Window>
   )
 }

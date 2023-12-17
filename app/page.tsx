@@ -6,6 +6,7 @@ import EmailWindow from '@/components/email/EmailWindow';
 import StatisticsWindow from "@/components/statistic/StatisticsWindow";
 import HelpWindow from "@/components/help/HelpWindow";
 import Menu, {windowsType} from "@/components/layout/Menu";
+import Image from "next/image";
 
 const Home = () => {
   const [animationType, setAnimationType] = useState('default')
@@ -39,6 +40,14 @@ const Home = () => {
 
   return (
     <>
+      <div className='fixed bg-[url("/typing-animation/wallpaper_base.png")] bg-repeat-x bg-contain max-h-[720px] top-[calc(50%_-_20px)] -translate-y-1/2 left-0 right-0 flex justify-center'>
+        <Image
+          className='object-contain -translate-x-1/4'
+          src='/typing-animation/wallpaper.png'
+          alt=''
+          width={896}
+          height={1440}/>
+      </div>
       <div className='flex flex-col grow m-auto w-full max-h-[720px] relative mb-56'>
         {openedWindows.includes('email') && (
           <EmailWindow

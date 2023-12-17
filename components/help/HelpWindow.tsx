@@ -40,7 +40,7 @@ const HelpWindow = ({onFocus, onClose, layer, focused}: HelpWindowProps) => {
         <p className='mb-8'>Can I play on my mobile device?</p>
         <p className='mb-20 text-surface-800 text-14'>
           Partially, yeah, if you want to. Although, you have to connect a physical keyboard.
-          Also, layout for small devices {'isn\'t'} ready yet, but on tablets it should be fine.
+          Also, layout for small devices (less than 768px) {'isn\'t'} ready yet, but on tablets it should be fine.
         </p>
         <p className='mb-8'>I found a bug!</p>
         <p className='mb-20 text-surface-800 text-14'>

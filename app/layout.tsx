@@ -13,7 +13,7 @@ export const metadata = {
 const RootLayout = ({children}: { children: React.ReactNode }) => {
 
   return (
-    <html lang='en'>
+    <html lang='en-GB'>
       <body className={neucha.className}>
         <div className='flex flex-col min-h-screen'>
           <main className='grow flex flex-col pt-16 pb-16 relative'>

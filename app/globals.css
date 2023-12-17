@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base{
+@layer base {
   body {
     @apply font-body !font-[600] tracking-widest text-16 leading-130
   }
@@ -12,21 +12,26 @@
   }
 
   ::-moz-selection { /* Code for Firefox */
-    @apply bg-primary-500 text-surface-50
+    @apply bg-primary text-surface-50
   }
 
   ::selection {
-    @apply bg-primary-500 text-surface-50
+    @apply bg-primary text-surface-50
   }
 
   a:hover,
   a:focus {
-    @apply text-primary-500
+    @apply text-primary
   }
 }
 
 @layer components {
   .button {
-    @apply text-center min-w-[180px] border-2 px-16 py-8 rounded-[20%_3%_38%_34%_/_4%_32%_5%_3%] hover:text-primary-500 focus:text-primary-500 focus:outline-none
+    @apply text-center min-w-[180px] border-2 px-16 py-8 rounded-[20%_3%_38%_34%_/_4%_32%_5%_3%] hover:text-primary focus:text-primary focus:outline-none hover:border-primary focus:border-primary
   }
+}
+
+/* https://codepen.io/sosuke/pen/Pjoqqp */
+.filter {
+  filter: invert(10%) sepia(73%) saturate(7346%) hue-rotate(326deg) brightness(98%) contrast(100%);
 }

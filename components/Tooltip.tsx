@@ -8,7 +8,7 @@ const Tooltip = ({ children, text }: TooltipProps) => {
 
   return (
     <span className='group relative'>
-      <span className='hover:text-primary-500 cursor-help'>
+      <span className='hover:text-primary cursor-help'>
         {children}
       </span>
       <span

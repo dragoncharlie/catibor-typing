@@ -10,7 +10,7 @@ const NotFound = () => {
   // 		</h1>
   // 		<Link
   // 			href='/'
-  // 			className='border px-2 py-4 min-w-[180px] text-center hover:text-primary-500 hover:border-primary-500'
+  // 			className='border px-2 py-4 min-w-[180px] text-center hover:text-primary hover:border-primary'
   // 		>
   // 			Home
   // 		</Link>

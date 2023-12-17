@@ -18,20 +18,6 @@ const config: Config = {
       'body': ['Neucha', 'cursive']
     },
     colors: {
-      transparent: 'transparent',
-
-      primary: {
-        50: '#FAE0EC',
-        100: '#F4B6D4',
-        200: '#EE8BB8',
-        300: '#EA5C9D',
-        400: '#E73788',
-        500: '#E60071',
-        600: '#D4006B',
-        700: '#BF0667',
-        800: '#A80362',
-        900: '#830758',
-      },
 
       surface: {
         50: '#FFFFFF',
@@ -46,44 +32,12 @@ const config: Config = {
         900: '#000000',
       },
 
-      success: {
-        50: '#DFFFD7',
-        100: '#C6F2B6',
-        200: '#A4DF8F',
-        300: '#84CE66',
-        400: '#6DC34A',
-        500: '#55B627',
-        600: '#4BA81E',
-        700: '#3C9411',
-        800: '#2F8301',
-        900: '#1A6600',
-      },
+      transparent: 'transparent',
+      primary: '#E60071',
 
-      error: {
-        50: '#FFBBBB',
-        100: '#FFA4A4',
-        200: '#FF8585',
-        300: '#FF5D5D',
-        400: '#FF2727',
-        500: '#DE0000',
-        600: '#BD0000',
-        700: '#A00000',
-        800: '#880000',
-        900: '#740000',
-      },
-
-      warning: {
-        50: '#FFF4E0',
-        100: '#FFE2B4',
-        200: '#FFCE82',
-        300: '#FEB84D',
-        400: '#FDA826',
-        500: '#FF9A00',
-        600: '#FF8F00',
-        700: '#F67E00',
-        800: '#EF6F00',
-        900: '#E75403',
-      },
+      success: '#55B627',
+      error: '#DE0000',
+      warning: '#FF9A00',
     },
     fontSize: {
       48: '48px',

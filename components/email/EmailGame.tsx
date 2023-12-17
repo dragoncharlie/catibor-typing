@@ -2,7 +2,6 @@ import React, {useEffect, useRef, useState} from 'react';
 import EmailFinish from '@/components/email/EmailFinish';
 
 import emails from './emails.json'
-import {start} from "repl";
 
 type Stat = {
   accuracy: string
@@ -172,10 +171,10 @@ const EmailGame = ({setAnimationType, setIsPaused}: EmailGameProps) => {
               <span className='underline font-bold text-surface-900'>
                 {email[currentWordIndex].slice(0, correctInput.length)}
               </span>
-              <span className='underline font-bold text-surface-50 bg-error-500'>
+              <span className='underline font-bold text-surface-50 bg-error'>
                 {email[currentWordIndex].slice(correctInput.length, input.length)}
               </span>
-              <span className='underline font-bold text-error-500'>
+              <span className='underline font-bold text-error'>
                 {input.slice(email[currentWordIndex].length)}
               </span>
               <span className='underline font-bold text-surface-600'>
@@ -191,7 +190,7 @@ const EmailGame = ({setAnimationType, setIsPaused}: EmailGameProps) => {
       {/* TODO get rid of input */}
       <input
         autoFocus
-        className={`mt-auto border-t-2 border-surface-900 px-16 py-8 w-full focus:outline-none ${!isCorrect && 'text-error-500'}`}
+        className={`mt-auto border-t-2 border-surface-900 px-16 py-8 w-full focus:outline-none ${!isCorrect && 'text-error'}`}
         onFocus={onFocus}
         onBlur={onBlur}
         value={input}

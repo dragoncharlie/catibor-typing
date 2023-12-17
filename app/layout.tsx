@@ -1,7 +1,5 @@
 import React from 'react'
 import './globals.css'
-// import Header from '@/components/layout/Header'
-import Footer from '@/components/layout/Footer'
 import { SpeedInsights } from "@vercel/speed-insights/next"
 
 import { Neucha } from 'next/font/google'
@@ -18,13 +16,11 @@ const RootLayout = ({children}: { children: React.ReactNode }) => {
     <html lang='en'>
       <body className={neucha.className}>
         <div className='flex flex-col min-h-screen'>
-          {/*<Header/>*/}
           <main className='grow flex flex-col pt-16 pb-16 relative'>
             <div className='container grow flex flex-col'>
               {children}
             </div>
           </main>
-          <Footer/>
         </div>
         <SpeedInsights />
       </body>

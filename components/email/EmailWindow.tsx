@@ -8,9 +8,10 @@ type EmailWindowProps = {
   onClose: () => void
   setAnimationType: (type: string) => void
   layer: string
+  focused: boolean
 }
 
-const EmailWindow = ({onFocus, setAnimationType, onClose, layer}: EmailWindowProps) => {
+const EmailWindow = ({onFocus, setAnimationType, onClose, layer, focused}: EmailWindowProps) => {
   const [isStarted, setIsStarted] = useState(false)
   const [isPaused, setIsPaused] = useState(false)
   const stopGame = () => {
@@ -22,6 +23,7 @@ const EmailWindow = ({onFocus, setAnimationType, onClose, layer}: EmailWindowPro
     <Window
       className={`absolute top-0 left-0 max-h-screen max-w-[520px] w-3/5 lg:w-1/2 ${layer} h-[calc(60vh)] lg:h-[calc(100%_-_64px)]`}
       title={`mail.exe ${isPaused ? '(paused)' : ''}`}
+      focused={focused}
       onClose={stopGame}
       onFocus={onFocus}>
       {!isStarted && <EmailStart onStart={() => setIsStarted(true)}/>}
@@ -30,4 +32,4 @@ const EmailWindow = ({onFocus, setAnimationType, onClose, layer}: EmailWindowPro
   )
 }
 
-export default EmailWindow
+export default EmailWindow;

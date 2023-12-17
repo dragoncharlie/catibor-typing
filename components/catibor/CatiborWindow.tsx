@@ -8,21 +8,22 @@ type CatiborAnimationProps = {
   onFocus: () => void
   onClose: () => void
   layer: string
+  focused: boolean
 }
 
 const imageClassName = 'absolute bottom-0 right-0 max-h-full object-right-bottom object-contain'
 
-const CatiborWindow = ({type, onFocus, onClose, layer}: CatiborAnimationProps) => {
+const CatiborWindow = ({type, onFocus, onClose, layer, focused}: CatiborAnimationProps) => {
   const [boop, setBoop] = useState<NodeJS.Timeout | null>(null)
   const [closeCount, setCloseCount] = useState(0)
   const [timeoutId, setTimeoutId] = useState<NodeJS.Timeout | null>(null)
-  const [closed, setClosed] = useState(true)
+  const [closed, setClosed] = useState<boolean | null>(null)
 
   useEffect(() => {
     setClosed(!!localStorage.getItem('...'))
   }, []);
 
-  const clickBoop = () => {
+  const onBoop = () => {
     const id = setTimeout(() => {
       setBoop(null)
     }, 1000)
@@ -35,6 +36,12 @@ const CatiborWindow = ({type, onFocus, onClose, layer}: CatiborAnimationProps) =
     }
   }, [type]);
 
+  const cancelClose = () => {
+    setCloseCount(-1)
+    setTimeout(() => {
+      setCloseCount(0)
+    }, 2000)
+  }
 
   const onTryClose = () => {
     if (closed) {
@@ -46,7 +53,7 @@ const CatiborWindow = ({type, onFocus, onClose, layer}: CatiborAnimationProps) =
         clearTimeout(timeoutId)
       }
       const id = setTimeout(() => {
-        setCloseCount(0)
+        cancelClose()
       }, 10000)
       setTimeoutId(id)
     } else if (closeCount === 3) {
@@ -61,9 +68,12 @@ const CatiborWindow = ({type, onFocus, onClose, layer}: CatiborAnimationProps) =
     }
   }
 
+  if (closed === null) return null
+
   return (
     <Window
       className={`absolute bottom-0 right-0 max-w-[740px] w-[calc(100%_-_72px)] max-h-[calc(100vh_-_56px_-_56px_-_32px)] ${layer}`}
+      focused={focused}
       title={(<>catibor.exe {!closed && type === 'finish' && <span className='ml-4'>(not working)</span>}</>)}
       onClose={onTryClose}
       onFocus={onFocus}>
@@ -81,13 +91,13 @@ const CatiborWindow = ({type, onFocus, onClose, layer}: CatiborAnimationProps) =
             <>
               {/* finish */}
               <Image
-                className={`${imageClassName} ${closeCount || type !== 'finish' ? 'opacity-0' : 'opacity-100'}`}
+                className={`${imageClassName} ${closeCount > 0 || type !== 'finish' ? 'opacity-0' : 'opacity-100'}`}
                 src='/typing-animation/sleep.png'
                 alt=''
                 width={736}
                 height={496}/>
               {/* default + typing */}
-              <CatiborTyping type={closeCount ? '' : type}/>
+              <CatiborTyping type={closeCount > 0 ? '' : type}/>
               {/* closing */}
 
               <Image
@@ -97,13 +107,13 @@ const CatiborWindow = ({type, onFocus, onClose, layer}: CatiborAnimationProps) =
                 width={736}
                 height={496}/>
               <Image
-                className={`${imageClassName} ${closeCount !== 2 ? 'opacity-0' : 'opacity-100'}`}
-                src='/typing-animation/shocked.png'
+                className={`${imageClassName} ${closeCount !== 3 && closeCount !== 2 ? 'opacity-0' : 'opacity-100'}`}
+                src='/typing-animation/sad.png'
                 alt=''
                 width={736}
                 height={496}/>
               <Image
-                className={`${imageClassName} ${closeCount !== 3 && closeCount !== 4 ? 'opacity-0' : 'opacity-100'}`}
+                className={`${imageClassName} ${closeCount !== 4 ? 'opacity-0' : 'opacity-100'}`}
                 src='/typing-animation/angry.png'
                 alt=''
                 width={736}
@@ -113,8 +123,9 @@ const CatiborWindow = ({type, onFocus, onClose, layer}: CatiborAnimationProps) =
         </div>
         {!closed && (['default', 'typing'].includes(type)) && (
           <button
-            onClick={clickBoop}
-            className='absolute right-[26%] top-[40%] -translate-y-1/2 translate-x-1/2 h-24 w-24 opacity-0 bg-error-500'
+            onClick={onBoop}
+            tabIndex={-1}
+            className='absolute right-[26%] top-[40%] -translate-y-1/2 translate-x-1/2 h-24 w-24 opacity-0 bg-error'
           />
         )}
         <div
@@ -126,6 +137,7 @@ const CatiborWindow = ({type, onFocus, onClose, layer}: CatiborAnimationProps) =
               {closeCount === 2 && 'Why are you trying to get rid of me?\n You don\'t like me?'}
               {closeCount === 3 && 'Are you sure?'}
               {closeCount === 4 && 'Ok...'}
+              {closeCount === -1 && 'Phew, false alarm...'}
             </div>
           )}
         </div>

@@ -4,10 +4,8 @@ import React, {useState} from 'react';
 import CatiborWindow from '@/components/catibor/CatiborWindow';
 import EmailWindow from '@/components/email/EmailWindow';
 import StatisticsWindow from "@/components/statistic/StatisticsWindow";
-import Tooltip from "@/components/Tooltip";
 import HelpWindow from "@/components/help/HelpWindow";
-
-type windowsType = 'email' | 'catibor' | 'statistic' | 'help'
+import Menu, {windowsType} from "@/components/layout/Menu";
 
 const Home = () => {
   const [animationType, setAnimationType] = useState('default')
@@ -37,11 +35,14 @@ const Home = () => {
     }
   }
 
+  const focusedWindow = openedWindows[openedWindows.length - 1]
+
   return (
     <>
-      <div className='flex flex-col grow m-auto w-full max-h-[720px] relative'>
+      <div className='flex flex-col grow m-auto w-full max-h-[720px] relative mb-56'>
         {openedWindows.includes('email') && (
           <EmailWindow
+            focused={focusedWindow === 'email'}
             layer={getLayer('email')}
             onFocus={onOpen('email')}
             setAnimationType={setAnimationType}
@@ -50,6 +51,7 @@ const Home = () => {
         )}
         {openedWindows.includes('catibor') && (
           <CatiborWindow
+            focused={focusedWindow === 'catibor'}
             layer={getLayer('catibor')}
             onClose={onClose('catibor')}
             onFocus={onOpen('catibor')}
@@ -58,6 +60,7 @@ const Home = () => {
         )}
         {openedWindows.includes('statistic') && (
           <StatisticsWindow
+            focused={focusedWindow === 'statistic'}
             layer={getLayer('statistic')}
             onFocus={onOpen('statistic')}
             onClose={onClose('statistic')}
@@ -66,34 +69,14 @@ const Home = () => {
         )}
         {openedWindows.includes('help') && (
           <HelpWindow
+            focused={focusedWindow === 'help'}
             layer={getLayer('help')}
             onFocus={onOpen('help')}
             onClose={onClose('help')}
           />
         )}
       </div>
-      <div className='absolute flex bottom-0 left-1/2 -translate-x-1/2 translate-y-full border-2 border-b-0 z-20 bg-surface-50 rounded-[63%_2%_38%_0%_/_2%_100%_0%_3%]'>
-        <Tooltip text='Catibor'>
-          <button onClick={onOpen('catibor')} className='w-40 h-40 hover:text-primary-500'>
-            C
-          </button>
-        </Tooltip>
-        <Tooltip text='Email'>
-          <button onClick={onOpen('email')} className='w-40 h-40 hover:text-primary-500 border-l-2 border-surface-900'>
-            E
-          </button>
-        </Tooltip>
-        <Tooltip text='Stats'>
-          <button onClick={onOpen('statistic')} className='w-40 h-40 hover:text-primary-500 border-l-2 border-surface-900'>
-            S
-          </button>
-        </Tooltip>
-        <Tooltip text='Help'>
-          <button onClick={onOpen('help')} className='w-40 h-40 hover:text-primary-500 border-l-2 border-surface-900'>
-            H
-          </button>
-        </Tooltip>
-      </div>
+      <Menu onOpen={onOpen} />
     </>
   )
 }

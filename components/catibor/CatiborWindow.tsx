@@ -14,6 +14,8 @@ type CatiborAnimationProps = {
 const imageClassName = 'absolute bottom-0 right-0 max-h-full object-right-bottom object-contain'
 
 const CatiborWindow = ({type, onFocus, onClose, layer, focused}: CatiborAnimationProps) => {
+  // to preload hidden images, but hide them from code after that
+  const [init, setInit] = useState(false)
   const [boop, setBoop] = useState<NodeJS.Timeout | null>(null)
   const [closeCount, setCloseCount] = useState(0)
   const [timeoutId, setTimeoutId] = useState<NodeJS.Timeout | null>(null)
@@ -21,6 +23,9 @@ const CatiborWindow = ({type, onFocus, onClose, layer, focused}: CatiborAnimatio
 
   useEffect(() => {
     setClosed(!!localStorage.getItem('...'))
+    setTimeout(() => {
+      setInit(true)
+    }, 500)
   }, []);
 
   const onBoop = () => {
@@ -92,6 +97,7 @@ const CatiborWindow = ({type, onFocus, onClose, layer, focused}: CatiborAnimatio
               {/* finish */}
               <Image
                 className={`${imageClassName} ${closeCount > 0 || type !== 'finish' ? 'opacity-0' : 'opacity-100'}`}
+                // it's not optimized because apng loses animation
                 unoptimized
                 src='/typing-animation/sleep.png'
                 alt=''
@@ -101,24 +107,28 @@ const CatiborWindow = ({type, onFocus, onClose, layer, focused}: CatiborAnimatio
               <CatiborTyping type={closeCount > 0 ? '' : type}/>
               {/* closing */}
 
-              <Image
-                className={`${imageClassName} ${closeCount !== 1 ? 'opacity-0' : 'opacity-100'}`}
-                src='/typing-animation/shocked.png'
-                alt=''
-                width={736}
-                height={496}/>
-              <Image
-                className={`${imageClassName} ${closeCount !== 3 && closeCount !== 2 ? 'opacity-0' : 'opacity-100'}`}
-                src='/typing-animation/sad.png'
-                alt=''
-                width={736}
-                height={496}/>
-              <Image
-                className={`${imageClassName} ${closeCount !== 4 ? 'opacity-0' : 'opacity-100'}`}
-                src='/typing-animation/angry.png'
-                alt=''
-                width={736}
-                height={496}/>
+              {(!init || !!closeCount) && (
+                <>
+                  <Image
+                    className={`${imageClassName} ${closeCount !== 1 ? 'opacity-0' : 'opacity-100'}`}
+                    src='/typing-animation/shocked.png'
+                    alt=''
+                    width={736}
+                    height={496}/>
+                  <Image
+                    className={`${imageClassName} ${closeCount !== 3 && closeCount !== 2 ? 'opacity-0' : 'opacity-100'}`}
+                    src='/typing-animation/sad.png'
+                    alt=''
+                    width={736}
+                    height={496}/>
+                  <Image
+                    className={`${imageClassName} ${closeCount !== 4 ? 'opacity-0' : 'opacity-100'}`}
+                    src='/typing-animation/angry.png'
+                    alt=''
+                    width={736}
+                    height={496}/>
+                </>
+              )}
             </>
           )}
         </div>

@@ -93,6 +93,7 @@ const CatibirTyping = ({type}: CatiborAnimationProps) => {
         height={496}/>
       <Image
         className={`${imageClassName} ${!isTyping ? 'opacity-0' : 'opacity-100'}`}
+        // it's not optimized because apng loses animation
         unoptimized
         src='/typing-animation/body.png'
         alt=''

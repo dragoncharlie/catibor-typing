@@ -32,16 +32,17 @@ const Menu = ({onOpen}: MenuProps) => {
         <Tooltip text='Catibor'>
           <button
             onClick={onOpen('catibor')}
+            aria-label='Catibor'
             className='flex items-center justify-center relative group w-36 h-36'>
             <Image
-              className='w-32 h-32 group-hover:opacity-0 group-focus:opacity-0'
+              className='select-none w-32 h-32 group-hover:opacity-0 group-focus:opacity-0'
               src='/typing-animation/catibor.png'
               alt=''
               width={80}
               height={80}
             />
             <Image
-              className='filter w-32 h-32 absolute opacity-0 group-hover:opacity-100 group-focus:opacity-100'
+              className='filter select-none w-32 h-32 absolute opacity-0 group-hover:opacity-100 group-focus:opacity-100'
               src='/typing-animation/catibor_hover.png'
               alt=''
               width={80}
@@ -52,16 +53,17 @@ const Menu = ({onOpen}: MenuProps) => {
         <Tooltip text='Email'>
           <button
             onClick={onOpen('email')}
+            aria-label='Email'
             className='flex items-center justify-center relative group w-36 h-36'>
             <Image
-              className='w-32 h-32 group-hover:opacity-0 group-focus:opacity-0'
+              className='select-none w-32 h-32 group-hover:opacity-0 group-focus:opacity-0'
               src='/typing-animation/email.png'
               alt=''
               width={80}
               height={80}
             />
             <Image
-              className='filter w-32 h-32 absolute opacity-0 group-hover:opacity-100 group-focus:opacity-100'
+              className='filter select-none w-32 h-32 absolute opacity-0 group-hover:opacity-100 group-focus:opacity-100'
               src='/typing-animation/email_hover.png'
               alt=''
               width={80}
@@ -72,16 +74,17 @@ const Menu = ({onOpen}: MenuProps) => {
         <Tooltip text='Stats'>
           <button
             onClick={onOpen('statistic')}
+            aria-label='Statistics'
             className='flex items-center justify-center relative group w-36 h-36'>
             <Image
-              className='w-32 h-32 group-hover:opacity-0 group-focus:opacity-0'
+              className='select-none w-32 h-32 group-hover:opacity-0 group-focus:opacity-0'
               src='/typing-animation/stats.png'
               alt=''
               width={80}
               height={80}
             />
             <Image
-              className='filter w-32 h-32 absolute opacity-0 group-hover:opacity-100 group-focus:opacity-100'
+              className='filter select-none w-32 h-32 absolute opacity-0 group-hover:opacity-100 group-focus:opacity-100'
               src='/typing-animation/stats_hover.png'
               alt=''
               width={80}
@@ -92,16 +95,17 @@ const Menu = ({onOpen}: MenuProps) => {
         <Tooltip text='Help'>
           <button
             onClick={onOpen('help')}
+            aria-label='Help'
             className='flex items-center justify-center relative group w-36 h-36'>
             <Image
-              className='w-32 h-32 group-hover:opacity-0 group-focus:opacity-0'
+              className='select-none w-32 h-32 group-hover:opacity-0 group-focus:opacity-0'
               src='/typing-animation/help.png'
               alt=''
               width={80}
               height={80}
             />
             <Image
-              className='filter w-32 h-32 absolute opacity-0 group-hover:opacity-100 group-focus:opacity-100'
+              className='filter select-none w-32 h-32 absolute opacity-0 group-hover:opacity-100 group-focus:opacity-100'
               src='/typing-animation/help_hover.png'
               alt=''
               width={80}

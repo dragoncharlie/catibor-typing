@@ -1,7 +1,6 @@
 import React, {useEffect, useRef, useState} from 'react';
 import EmailFinish from '@/components/email/EmailFinish';
-
-import emails from './emails.json'
+import {generateText} from "@/utils/randomizer";
 
 type Stat = {
   accuracy: string
@@ -15,8 +14,6 @@ type EmailGameProps = {
   setAnimationType: (type: string) => void
   setIsPaused: (paused: boolean) => void
 }
-
-// TODO add pause when unfocused
 
 const EmailGame = ({setAnimationType, setIsPaused}: EmailGameProps) => {
   // start game
@@ -45,14 +42,9 @@ const EmailGame = ({setAnimationType, setIsPaused}: EmailGameProps) => {
   }, [pausedTime]);
 
   // start game
-  const getRandomInt = (max: number) => {
-    return Math.floor(Math.random() * max);
-  }
-
   const startGame = () => {
-    const emailIndex = getRandomInt(emails.length)
     // filter and map in case if there are extra spaces
-    const formattedEmail = emails[emailIndex].trim().split(' ').map(word => word.trim()).filter(word => !!word)
+    const formattedEmail = (generateText()).trim().split(' ').map(word => word.trim()).filter(word => !!word)
     setEmail(formattedEmail)
 
     setAnimationType('default')

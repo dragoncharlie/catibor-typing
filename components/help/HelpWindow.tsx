@@ -27,6 +27,9 @@ const HelpWindow = ({onFocus, onClose, layer, focused}: HelpWindowProps) => {
         <p className='mb-8'>What is it?</p>
         <p className='mb-20 text-surface-800 text-14'>
           It is just a mini-game to help you practice your typing skills: speed and accuracy.
+          <br/>
+          <br/>
+          Currently, there is only meowing language available but we are hoping english will be available as well soon.
         </p>
         <p className='mb-8'>Who is Catibor?</p>
         <p className='mb-20 text-surface-800 text-14'>
@@ -37,15 +40,6 @@ const HelpWindow = ({onFocus, onClose, layer, focused}: HelpWindowProps) => {
           <br />
           By the way, there are <Link className='text-surface-900 underline' href='https://t.me/addstickers/Catibor' target='_blank'>telegram stickers with Catibor</Link>.
         </p>
-        <p className='mb-8'>Can I play on my mobile device?</p>
-        <p className='mb-20 text-surface-800 text-14'>
-          Partially, yeah, if you want to. Although, you have to connect a physical keyboard.
-          Also, layout for small devices (less than 768px) {'isn\'t'} ready yet, but on tablets it should be fine.
-        </p>
-        <p className='mb-8'>I found a bug!</p>
-        <p className='mb-20 text-surface-800 text-14'>
-          If you found any kind of bug you can report it to <Link className='text-surface-900 underline' href='https://github.com/dragoncharlie/catibor-typing/issues' target='_blank'>github issues section</Link> and we will try to fix it a soon as possible.
-        </p>
         {missing && (
           <>
             <p className='mb-8'>Catibor is missing ;(</p>
@@ -55,6 +49,15 @@ const HelpWindow = ({onFocus, onClose, layer, focused}: HelpWindowProps) => {
             </p>
           </>
         )}
+        {/*<p className='mb-8'>Can I play on my mobile device?</p>*/}
+        {/*<p className='mb-20 text-surface-800 text-14'>*/}
+        {/*  Partially, yeah, if you want to. Although, you have to connect a physical keyboard.*/}
+        {/*  Also, layout for small devices (less than 768px) {'isn\'t'} ready yet, but on tablets it should be fine.*/}
+        {/*</p>*/}
+        <p className='mb-8'>I found a bug!</p>
+        <p className='mb-20 text-surface-800 text-14'>
+          If you found any kind of bug you can report it to <Link className='text-surface-900 underline' href='https://github.com/dragoncharlie/catibor-typing/issues' target='_blank'>github issues section</Link> and we will try to fix it a soon as possible.
+        </p>
         <p className='mb-8'>I want to help!</p>
         <p className='mb-20 text-surface-800 text-14'>
           If you have any suggestion, read a previous question.

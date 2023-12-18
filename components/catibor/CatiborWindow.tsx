@@ -92,6 +92,7 @@ const CatiborWindow = ({type, onFocus, onClose, layer, focused}: CatiborAnimatio
               {/* finish */}
               <Image
                 className={`${imageClassName} ${closeCount > 0 || type !== 'finish' ? 'opacity-0' : 'opacity-100'}`}
+                unoptimized
                 src='/typing-animation/sleep.png'
                 alt=''
                 width={736}

@@ -93,6 +93,7 @@ const CatibirTyping = ({type}: CatiborAnimationProps) => {
         height={496}/>
       <Image
         className={`${imageClassName} ${!isTyping ? 'opacity-0' : 'opacity-100'}`}
+        unoptimized
         src='/typing-animation/body.png'
         alt=''
         width={736}

@@ -31,10 +31,15 @@ const CatiborWindow = ({
 
 	useEffect(() => {
 		setClosed(!!localStorage.getItem('...'))
-		setTimeout(() => {
-			setInit(true)
-		}, 500)
 	}, [])
+
+	useEffect(() => {
+		if (!closed) {
+			setTimeout(() => {
+				setInit(true)
+			}, 1000)
+		}
+	}, [closed])
 
 	const onBoop = () => {
 		const id = setTimeout(() => {

@@ -42,7 +42,7 @@ const StatisticsWindow = ({
 			focused={focused}
 			onClose={onClose}
 			onFocus={onFocus}
-			className={`absolute left-1/2 top-16 -translate-x-1/2 max-w-[520px] ${layer}`}
+			className={`absolute left-1/3 top-16 max-w-[520px] ${layer}`}
 		>
 			<div className='p-16 overflow-auto'>
 				{stats.length ? (

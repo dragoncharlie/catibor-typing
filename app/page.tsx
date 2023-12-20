@@ -56,7 +56,7 @@ const Home = () => {
 					height={1440}
 				/>
 			</div>
-			<div className='flex flex-col grow m-auto w-full max-h-[720px] relative mb-56'>
+			<div className='desktop flex flex-col grow m-auto w-full max-h-[720px] relative mb-56'>
 				{openedWindows.includes('email') && (
 					<EmailWindow
 						focused={focusedWindow === 'email'}

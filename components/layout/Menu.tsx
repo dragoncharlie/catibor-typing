@@ -29,8 +29,8 @@ const Menu = ({ onOpen }: MenuProps) => {
 	}, [])
 
 	return (
-		<footer className='fixed bottom-0 left-0 right-0 border-t-2 z-10 bg-surface-50'>
-			<div className='container flex justify-center gap-16 h-40 relative items-center'>
+		<footer className='border-t-2 z-10 bg-surface-50'>
+			<div className='px-16 md:px-32 flex justify-center gap-16 h-40 relative items-center'>
 				<Tooltip text='Catibor'>
 					<button
 						onClick={onOpen('catibor')}

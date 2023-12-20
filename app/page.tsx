@@ -56,42 +56,44 @@ const Home = () => {
 					height={1440}
 				/>
 			</div>
-			<div className='desktop flex flex-col grow m-auto w-full max-h-[720px] relative mb-56'>
-				{openedWindows.includes('email') && (
-					<EmailWindow
-						focused={focusedWindow === 'email'}
-						layer={getLayer('email')}
-						onFocus={onOpen('email')}
-						setAnimationType={setAnimationType}
-						onClose={onClose('email')}
-					/>
-				)}
-				{openedWindows.includes('catibor') && (
-					<CatiborWindow
-						focused={focusedWindow === 'catibor'}
-						layer={getLayer('catibor')}
-						onClose={onClose('catibor')}
-						onFocus={onOpen('catibor')}
-						type={animationType}
-					/>
-				)}
-				{openedWindows.includes('statistic') && (
-					<StatisticsWindow
-						focused={focusedWindow === 'statistic'}
-						layer={getLayer('statistic')}
-						onFocus={onOpen('statistic')}
-						onClose={onClose('statistic')}
-						updateFlag={animationType}
-					/>
-				)}
-				{openedWindows.includes('help') && (
-					<HelpWindow
-						focused={focusedWindow === 'help'}
-						layer={getLayer('help')}
-						onFocus={onOpen('help')}
-						onClose={onClose('help')}
-					/>
-				)}
+			<div className='p-16 md:p-32 grow flex flex-col'>
+				<div className='desktop grow m-auto w-full relative'>
+					{openedWindows.includes('email') && (
+						<EmailWindow
+							focused={focusedWindow === 'email'}
+							layer={getLayer('email')}
+							onFocus={onOpen('email')}
+							setAnimationType={setAnimationType}
+							onClose={onClose('email')}
+						/>
+					)}
+					{openedWindows.includes('catibor') && (
+						<CatiborWindow
+							focused={focusedWindow === 'catibor'}
+							layer={getLayer('catibor')}
+							onClose={onClose('catibor')}
+							onFocus={onOpen('catibor')}
+							type={animationType}
+						/>
+					)}
+					{openedWindows.includes('statistic') && (
+						<StatisticsWindow
+							focused={focusedWindow === 'statistic'}
+							layer={getLayer('statistic')}
+							onFocus={onOpen('statistic')}
+							onClose={onClose('statistic')}
+							updateFlag={animationType}
+						/>
+					)}
+					{openedWindows.includes('help') && (
+						<HelpWindow
+							focused={focusedWindow === 'help'}
+							layer={getLayer('help')}
+							onFocus={onOpen('help')}
+							onClose={onClose('help')}
+						/>
+					)}
+				</div>
 			</div>
 			<Menu onOpen={onOpen} />
 		</>

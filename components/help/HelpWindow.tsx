@@ -19,7 +19,7 @@ const HelpWindow = ({ onFocus, onClose, layer, focused }: HelpWindowProps) => {
 
 	return (
 		<Window
-			className={`absolute left-128 bottom-16 max-w-[520px] h-1/2 w-2/3 lg:w-1/2 ${layer}`}
+			className={`absolute left-128 xl:left-[15%] bottom-16 max-w-[520px] h-1/2 w-2/3 lg:w-1/2 ${layer}`}
 			title='help.txt'
 			focused={focused}
 			onClose={onClose}

@@ -90,7 +90,7 @@ const CatiborWindow = ({
 
 	return (
 		<Window
-			className={`absolute bottom-0 right-0 max-w-[740px] w-[calc(100%_-_72px)] max-h-[calc(100vh_-_56px_-_56px_-_32px)] ${layer}`}
+			className={`absolute bottom-0 right-0 xl:left-[45%] max-w-[740px] w-[calc(100%_-_72px)] max-h-[calc(100vh_-_56px_-_56px_-_32px)] ${layer}`}
 			focused={focused}
 			title={
 				<>

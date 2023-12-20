@@ -56,7 +56,7 @@ const Home = () => {
 					height={1440}
 				/>
 			</div>
-			<div className='p-16 md:p-32 grow flex flex-col'>
+			<div className='container py-16 md:py-32 grow flex flex-col'>
 				<div className='desktop grow m-auto w-full relative'>
 					{openedWindows.includes('email') && (
 						<EmailWindow

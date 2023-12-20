@@ -8,7 +8,7 @@
   }
 
   .container {
-    @apply px-16 md:px-32 mx-auto !max-w-[1280px]
+    @apply px-16 md:px-32 mx-auto !max-w-[1920px]
   }
 
   ::-moz-selection { /* Code for Firefox */

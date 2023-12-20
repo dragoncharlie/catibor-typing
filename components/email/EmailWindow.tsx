@@ -28,7 +28,7 @@ const EmailWindow = ({
 
 	return (
 		<Window
-			className={`absolute top-0 left-0 xl:left-auto xl:right-1/2 max-h-screen max-w-[520px] w-3/5 lg:w-1/2 ${layer} h-[calc(60vh)] lg:h-[calc(100%_-_64px)] max-h-[620px]`}
+			className={`absolute top-0 left-0 xl:left-auto xl:right-1/2 max-w-[520px] w-3/5 lg:w-1/2 ${layer} h-[calc(60vh)] lg:h-[calc(100%_-_64px)] max-h-[620px]`}
 			title={`mail.exe ${isPaused ? '(paused)' : ''}`}
 			focused={focused}
 			onClose={stopGame}

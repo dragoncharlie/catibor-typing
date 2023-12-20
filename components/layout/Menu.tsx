@@ -36,14 +36,14 @@ const Menu = ({onOpen}: MenuProps) => {
             className='flex items-center justify-center relative group w-36 h-36'>
             <Image
               className='select-none w-32 h-32 group-hover:opacity-0 group-focus:opacity-0'
-              src='/typing-animation/catibor.png'
+              src='/menu/catibor.png'
               alt=''
               width={80}
               height={80}
             />
             <Image
               className='filter select-none w-32 h-32 absolute opacity-0 group-hover:opacity-100 group-focus:opacity-100'
-              src='/typing-animation/catibor_hover.png'
+              src='/menu/catibor_hover.png'
               alt=''
               width={80}
               height={80}
@@ -57,14 +57,14 @@ const Menu = ({onOpen}: MenuProps) => {
             className='flex items-center justify-center relative group w-36 h-36'>
             <Image
               className='select-none w-32 h-32 group-hover:opacity-0 group-focus:opacity-0'
-              src='/typing-animation/email.png'
+              src='/menu/email.png'
               alt=''
               width={80}
               height={80}
             />
             <Image
               className='filter select-none w-32 h-32 absolute opacity-0 group-hover:opacity-100 group-focus:opacity-100'
-              src='/typing-animation/email_hover.png'
+              src='/menu/email_hover.png'
               alt=''
               width={80}
               height={80}
@@ -78,14 +78,14 @@ const Menu = ({onOpen}: MenuProps) => {
             className='flex items-center justify-center relative group w-36 h-36'>
             <Image
               className='select-none w-32 h-32 group-hover:opacity-0 group-focus:opacity-0'
-              src='/typing-animation/stats.png'
+              src='/menu/stats.png'
               alt=''
               width={80}
               height={80}
             />
             <Image
               className='filter select-none w-32 h-32 absolute opacity-0 group-hover:opacity-100 group-focus:opacity-100'
-              src='/typing-animation/stats_hover.png'
+              src='/menu/stats_hover.png'
               alt=''
               width={80}
               height={80}
@@ -99,14 +99,14 @@ const Menu = ({onOpen}: MenuProps) => {
             className='flex items-center justify-center relative group w-36 h-36'>
             <Image
               className='select-none w-32 h-32 group-hover:opacity-0 group-focus:opacity-0'
-              src='/typing-animation/help.png'
+              src='/menu/help.png'
               alt=''
               width={80}
               height={80}
             />
             <Image
               className='filter select-none w-32 h-32 absolute opacity-0 group-hover:opacity-100 group-focus:opacity-100'
-              src='/typing-animation/help_hover.png'
+              src='/menu/help_hover.png'
               alt=''
               width={80}
               height={80}
@@ -115,7 +115,7 @@ const Menu = ({onOpen}: MenuProps) => {
         </Tooltip>
 
         <div className='absolute top-1/2 -translate-y-1/2 right-32 flex gap-12'>
-          <button className='p-4 text-14 hover:text-primary focus:text-primary'>ENG</button>
+          {/*<button className='p-4 text-14 hover:text-primary focus:text-primary'>ENG</button>*/}
           <div className='flex justify-center items-end flex-col'>
             <p className='text-12 leading-100 mb-4'>{time}</p>
             <p className='text-12 leading-100'>{date}</p>

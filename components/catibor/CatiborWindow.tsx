@@ -89,8 +89,8 @@ const CatiborWindow = ({type, onFocus, onClose, layer, focused}: CatiborAnimatio
             className='max-h-full object-right-bottom object-contain'
             src='/typing-animation/table.png'
             alt=''
-            width={736}
-            height={496}
+            width={1472}
+            height={992}
           />
           {!closed && (
             <>
@@ -101,8 +101,8 @@ const CatiborWindow = ({type, onFocus, onClose, layer, focused}: CatiborAnimatio
                 unoptimized
                 src='/typing-animation/sleep.png'
                 alt=''
-                width={736}
-                height={496}/>
+                width={1472}
+                height={992}/>
               {/* default + typing */}
               <CatiborTyping type={closeCount > 0 ? '' : type}/>
               {/* closing */}
@@ -113,20 +113,20 @@ const CatiborWindow = ({type, onFocus, onClose, layer, focused}: CatiborAnimatio
                     className={`${imageClassName} ${closeCount !== 1 ? 'opacity-0' : 'opacity-100'}`}
                     src='/typing-animation/shocked.png'
                     alt=''
-                    width={736}
-                    height={496}/>
+                    width={1472}
+                    height={992}/>
                   <Image
                     className={`${imageClassName} ${closeCount !== 3 && closeCount !== 2 ? 'opacity-0' : 'opacity-100'}`}
                     src='/typing-animation/sad.png'
                     alt=''
-                    width={736}
-                    height={496}/>
+                    width={1472}
+                    height={992}/>
                   <Image
                     className={`${imageClassName} ${closeCount !== 4 ? 'opacity-0' : 'opacity-100'}`}
                     src='/typing-animation/angry.png'
                     alt=''
-                    width={736}
-                    height={496}/>
+                    width={1472}
+                    height={992}/>
                 </>
               )}
             </>

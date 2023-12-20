@@ -49,11 +49,6 @@ const HelpWindow = ({onFocus, onClose, layer, focused}: HelpWindowProps) => {
             </p>
           </>
         )}
-        {/*<p className='mb-8'>Can I play on my mobile device?</p>*/}
-        {/*<p className='mb-20 text-surface-800 text-14'>*/}
-        {/*  Partially, yeah, if you want to. Although, you have to connect a physical keyboard.*/}
-        {/*  Also, layout for small devices (less than 768px) {'isn\'t'} ready yet, but on tablets it should be fine.*/}
-        {/*</p>*/}
         <p className='mb-8'>I found a bug!</p>
         <p className='mb-20 text-surface-800 text-14'>
           If you found any kind of bug you can report it to <Link className='text-surface-900 underline' href='https://github.com/dragoncharlie/catibor-typing/issues' target='_blank'>github issues section</Link> and we will try to fix it a soon as possible.

@@ -83,40 +83,40 @@ const CatibirTyping = ({type}: CatiborAnimationProps) => {
         className={`${imageClassName} ${(rightPaw || !isTyping) ? 'opacity-0' : 'opacity-100'}`}
         src='/typing-animation/right_up.png'
         alt=''
-        width={736}
-        height={496}/>
+        width={1472}
+        height={992}/>
       <Image
         className={`${imageClassName} ${(!rightPaw || !isTyping) ? 'opacity-0' : 'opacity-100'}`}
         src='/typing-animation/right_down.png'
         alt=''
-        width={736}
-        height={496}/>
+        width={1472}
+        height={992}/>
       <Image
         className={`${imageClassName} ${!isTyping ? 'opacity-0' : 'opacity-100'}`}
         // it's not optimized because apng loses animation
         unoptimized
         src='/typing-animation/body.png'
         alt=''
-        width={736}
-        height={496}/>
+        width={1472}
+        height={992}/>
       <Image
         className={`${imageClassName} ${(leftPaw || !isTyping) ? 'opacity-0' : 'opacity-100'}`}
         src='/typing-animation/left_up.png'
         alt=''
-        width={736}
-        height={496}/>
+        width={1472}
+        height={992}/>
       <Image
         className={`${imageClassName} ${(!leftPaw || !isTyping) ? 'opacity-0' : 'opacity-100'}`}
         src='/typing-animation/left_down.png'
         alt=''
-        width={736}
-        height={496}/>
+        width={1472}
+        height={992}/>
       <Image
         className={`${imageClassName} ${!isTyping ? 'opacity-0' : 'opacity-100'}`}
         src='/typing-animation/whiskers.png'
         alt=''
-        width={736}
-        height={496}/>
+        width={1472}
+        height={992}/>
     </>
   )
 }

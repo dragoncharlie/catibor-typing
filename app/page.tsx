@@ -57,7 +57,7 @@ const Home = () => {
 				/>
 			</div>
 			<div className='container py-16 md:py-32 grow flex flex-col'>
-				<div className='desktop grow m-auto w-full relative'>
+				<div className='desktop grow m-auto w-full relative max-h-[1080px]'>
 					{openedWindows.includes('email') && (
 						<EmailWindow
 							focused={focusedWindow === 'email'}

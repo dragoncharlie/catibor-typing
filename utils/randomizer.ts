@@ -2,7 +2,7 @@ export const getRandomInt = (max: number, min: number = 0) => {
 	return Math.floor(Math.random() * (max - min) + min)
 }
 
-const punctuation = ['.', ',', ';', ' -', '?', '!']
+const punctuation = ['.', '?', '!', ',', ';', ' -']
 const words = [
 	'meow',
 	'meow-meow',
@@ -30,7 +30,7 @@ const getRandomWord = (capitalized: boolean, last: boolean) => {
 	const addPunctuation = last || getRandomInt(5) > 3
 	let punctuationIndex = -1
 	if (addPunctuation) {
-		punctuationIndex = getRandomInt(punctuation.length)
+		punctuationIndex = getRandomInt(last ? 3 : punctuation.length)
 	}
 
 	let word = words[wordIndex]

@@ -23,33 +23,32 @@ const EmailFinish = ({
 			<div className='flex gap-8 w-full'>
 				<div className='flex flex-col gap-8 mx-auto w-1/2'>
 					<p>
-						<span className='text-surface-800 text-14'>
-							WPM
+						<span className='text-surface-800 text-14 relative pr-8'>
 							<Tooltip text='Words per&nbsp;minute (5&nbsp;characters per&nbsp;word)'>
-								?
+								WPM <span className='text-12 absolute -top-4 -right-2'>?</span>
 							</Tooltip>
-							:
-						</span>{' '}
+						</span>
 						{wpm}
 					</p>
 					<p>
-						<span className='text-surface-800 text-14'>
-							CPM
-							<Tooltip text='Characters (symbols) per&nbsp;minute'>?</Tooltip>:
-						</span>{' '}
+						<span className='text-surface-800 text-14 relative pr-8'>
+							<Tooltip text='Characters (symbols) per&nbsp;minute'>
+								CPM <span className='text-12 absolute -top-4 -right-2'>?</span>
+							</Tooltip>
+						</span>
 						{cpm}
 					</p>
 					<p>
-						<span className='text-surface-800 text-14'>Accuracy:</span>{' '}
+						<span className='text-surface-800 text-14'>Accuracy</span>{' '}
 						{accuracy}%
 					</p>
 				</div>
 				<div className='flex flex-col gap-8 mx-auto w-1/2'>
 					<p>
-						<span className='text-surface-800 text-14'>Errors:</span> {errors}
+						<span className='text-surface-800 text-14'>Errors</span> {errors}
 					</p>
 					<p>
-						<span className='text-surface-800 text-14'>Time:</span> {time}s
+						<span className='text-surface-800 text-14'>Time</span> {time}s
 					</p>
 				</div>
 			</div>

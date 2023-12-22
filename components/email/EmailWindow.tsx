@@ -19,11 +19,15 @@ const EmailWindow = ({
 	layer,
 	focused,
 }: EmailWindowProps) => {
-	const [isStarted, setIsStarted] = useState(false)
+	const [lang, setLang] = useState('')
 	const [isPaused, setIsPaused] = useState(false)
 	const stopGame = () => {
-		setIsStarted(false)
+		setLang('')
 		onClose()
+	}
+
+	const onStart = (lang: string) => () => {
+		setLang(lang)
 	}
 
 	return (
@@ -34,11 +38,26 @@ const EmailWindow = ({
 			onClose={stopGame}
 			onFocus={onFocus}
 		>
-			{!isStarted && <EmailStart onStart={() => setIsStarted(true)} />}
-			{isStarted && (
+			{lang && (
+				<button
+					onClick={() => setLang('')}
+					className={`button absolute top-[3px] right-48 w-24 h-24 min-w-0 p-0 text-16 z-10 ${
+						focused
+							? 'border-surface-900 text-surface-900'
+							: 'border-surface-600 text-surface-600'
+					}`}
+					type='button'
+					title='Restart the game'
+				>
+					{'<-'}
+				</button>
+			)}
+			{!lang && <EmailStart onStart={onStart} />}
+			{lang && (
 				<EmailGame
 					setIsPaused={setIsPaused}
 					setAnimationType={setAnimationType}
+					lang={lang}
 				/>
 			)}
 		</Window>

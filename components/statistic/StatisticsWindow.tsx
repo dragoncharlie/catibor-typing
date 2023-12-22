@@ -27,13 +27,19 @@ const StatisticsWindow = ({
 	updateFlag,
 	focused,
 }: StatisticsWindowProps) => {
-	const [stats, setStats] = useState<Stat[]>([])
+	const [stats, setStats] = useState<{ eng: Stat[]; meow: Stat[] }>({
+		eng: [],
+		meow: [],
+	})
+	const [tab, setTab] = useState<'eng' | 'meow'>('eng')
 
 	useEffect(() => {
-		const lsStats = localStorage.getItem('stats')
-		if (lsStats) {
-			setStats(JSON.parse(lsStats))
-		}
+		const engStats = localStorage.getItem('eng')
+		const meowStats = localStorage.getItem('meow')
+		setStats({
+			eng: engStats ? JSON.parse(engStats) : [],
+			meow: meowStats ? JSON.parse(meowStats) : [],
+		})
 	}, [updateFlag])
 
 	return (
@@ -45,7 +51,7 @@ const StatisticsWindow = ({
 			className={`absolute left-1/3 xl:left-[40%] top-16 max-w-[520px] ${layer}`}
 		>
 			<div className='p-16 overflow-auto'>
-				{stats.length ? (
+				{stats[tab].length ? (
 					<>
 						<p className='text-center mb-12 text-18'>Best 10 results</p>
 						<table className='text-end'>
@@ -53,18 +59,22 @@ const StatisticsWindow = ({
 								<tr className='text-14 text-surface-800'>
 									<th className={cellClassName} />
 									<th className={cellClassName}>
-										<span className='flex gap-4 justify-end'>
-											WPM
+										<span className='flex gap-4 justify-end relative'>
 											<Tooltip text='Words&nbsp;per&nbsp;minute (5&nbsp;characters&nbsp;per&nbsp;word)'>
-												?
+												WPM
+												<span className='text-12 absolute -top-4 -right-8'>
+													?
+												</span>
 											</Tooltip>
 										</span>
 									</th>
 									<th className={cellClassName}>
-										<span className='flex gap-4 justify-end'>
-											CPM
+										<span className='flex gap-4 justify-end relative'>
 											<Tooltip text='Characters&nbsp;(symbols) per&nbsp;minute'>
-												?
+												CPM
+												<span className='text-12 absolute -top-4 -right-8'>
+													?
+												</span>
 											</Tooltip>
 										</span>
 									</th>
@@ -73,7 +83,7 @@ const StatisticsWindow = ({
 								</tr>
 							</thead>
 							<tbody>
-								{stats.map((record, index) => (
+								{stats[tab].map((record, index) => (
 									<tr key={record.date}>
 										<td className={cellClassName}>{index + 1}.</td>
 										<td className={cellClassName}>{record.wpm}</td>
@@ -99,6 +109,24 @@ const StatisticsWindow = ({
 						</p>
 					</>
 				)}
+			</div>
+			<div className='border-t-2'>
+				<button
+					onClick={() => setTab('eng')}
+					className={`px-8 border-r-2 hover:text-primary border-surface-900 ${
+						tab === 'eng' ? '' : 'text-surface-700'
+					}`}
+				>
+					English
+				</button>
+				<button
+					onClick={() => setTab('meow')}
+					className={`px-8 border-r-2 hover:text-primary border-surface-900 ${
+						tab === 'meow' ? '' : 'text-surface-700'
+					}`}
+				>
+					Kittens
+				</button>
 			</div>
 		</Window>
 	)

@@ -1,5 +1,5 @@
 type EmailStartProps = {
-	onStart: () => void
+	onStart: (lang: string) => () => void
 }
 
 const EmailStart = ({ onStart }: EmailStartProps) => (
@@ -12,9 +12,12 @@ const EmailStart = ({ onStart }: EmailStartProps) => (
 			clients as&nbsp;fast&nbsp;as&nbsp;possible.
 		</p>
 		<p>Could you help me, meow?</p>
-		<button className='button w-full mt-24' onClick={onStart}>
-			{/* eslint-disable-next-line react/no-unescaped-entities */}
-			Let's compose
+		<button className='button w-full mt-24' onClick={onStart('eng')}>
+			Let's compose!
+		</button>
+		<p className='mt-8 text-center'>- or -</p>
+		<button className='button w-full mt-8' onClick={onStart('meow')}>
+			Meow meow!
 		</button>
 	</div>
 )

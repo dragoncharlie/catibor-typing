@@ -32,8 +32,9 @@ const HelpWindow = ({ onFocus, onClose, layer, focused }: HelpWindowProps) => {
 					and accuracy.
 					<br />
 					<br />
-					Currently, there is only meowing language available but we are hoping
-					english will be available as well soon.
+					You can chose between two languages: English and Kittens. For English,
+					there are several prepared texts, but for Kittens they are made with a
+					simple generator.
 				</p>
 				<p className='mb-8'>Who is Catibor?</p>
 				<p className='mb-20 text-surface-800 text-14'>

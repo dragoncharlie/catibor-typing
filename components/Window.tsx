@@ -33,6 +33,7 @@ const Window = ({
 							: 'border-surface-600 text-surface-600'
 					}`}
 					type='button'
+					title={`Close ${title}`}
 				>
 					X
 				</button>

@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react'
 
 import EmailFinish from '@/components/email/EmailFinish'
-import { generateText } from '@/utils/randomizer'
+import { generateText, getRandomInt } from '@/utils/randomizer'
+import emails from '@/utils/emails.json'
 
 type Stat = {
 	accuracy: string
@@ -14,9 +15,10 @@ type Stat = {
 type EmailGameProps = {
 	setAnimationType: (type: string) => void
 	setIsPaused: (paused: boolean) => void
+	lang: string
 }
 
-const EmailGame = ({ setAnimationType, setIsPaused }: EmailGameProps) => {
+const EmailGame = ({ setAnimationType, setIsPaused, lang }: EmailGameProps) => {
 	// start game
 	const [startTime, setStartTime] = useState<Date | null>(null)
 	const [email, setEmail] = useState(['meow'])
@@ -44,8 +46,17 @@ const EmailGame = ({ setAnimationType, setIsPaused }: EmailGameProps) => {
 
 	// start game
 	const startGame = () => {
+		let text: string
+
+		if (lang === 'meow') {
+			text = generateText()
+		} else {
+			const emailIndex = getRandomInt(emails.length)
+			text = emails[emailIndex]
+		}
+
 		// filter and map in case if there are extra spaces
-		const formattedEmail = generateText()
+		const formattedEmail = text
 			.trim()
 			.split(' ')
 			.map((word) => word.trim())
@@ -130,13 +141,13 @@ const EmailGame = ({ setAnimationType, setIsPaused }: EmailGameProps) => {
 		setStat({ time, errors, cpm, wpm, accuracy })
 
 		let stats = []
-		const lsStats = localStorage.getItem('stats')
+		const lsStats = localStorage.getItem(lang)
 		if (lsStats) {
 			stats = JSON.parse(lsStats)
 		}
 		stats.push({ wpm, cpm, accuracy, date: new Date() })
 		stats.sort((a: Stat, b: Stat) => (a.cpm > b.cpm ? -1 : 1))
-		localStorage.setItem('stats', JSON.stringify(stats.slice(0, 10)))
+		localStorage.setItem(lang, JSON.stringify(stats.slice(0, 10)))
 	}
 
 	const endGame = () => {

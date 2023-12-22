@@ -61,12 +61,13 @@ const getKey = (event: KeyboardEvent) => {
 
 type CatiborAnimationProps = {
 	type: string
+	onImageLoad: (img: string) => () => void
 }
 
 const imageClassName =
 	'absolute bottom-0 right-0 max-h-full object-right-bottom object-contain'
 
-const CatibirTyping = ({ type }: CatiborAnimationProps) => {
+const CatibirTyping = ({ type, onImageLoad }: CatiborAnimationProps) => {
 	const [leftPaw, setLeftPaw] = useState(0)
 	const [rightPaw, setRightPaw] = useState(0)
 	let left = 0
@@ -139,6 +140,7 @@ const CatibirTyping = ({ type }: CatiborAnimationProps) => {
 				alt=''
 				width={1472}
 				height={992}
+				onLoad={onImageLoad('right_up')}
 			/>
 			<Image
 				className={`${imageClassName} ${
@@ -148,6 +150,7 @@ const CatibirTyping = ({ type }: CatiborAnimationProps) => {
 				alt=''
 				width={1472}
 				height={992}
+				onLoad={onImageLoad('right_down')}
 			/>
 			<Image
 				className={`${imageClassName} ${
@@ -159,6 +162,7 @@ const CatibirTyping = ({ type }: CatiborAnimationProps) => {
 				alt=''
 				width={1472}
 				height={992}
+				onLoad={onImageLoad('body')}
 			/>
 			<Image
 				className={`${imageClassName} ${
@@ -168,6 +172,7 @@ const CatibirTyping = ({ type }: CatiborAnimationProps) => {
 				alt=''
 				width={1472}
 				height={992}
+				onLoad={onImageLoad('left_up')}
 			/>
 			<Image
 				className={`${imageClassName} ${
@@ -177,6 +182,7 @@ const CatibirTyping = ({ type }: CatiborAnimationProps) => {
 				alt=''
 				width={1472}
 				height={992}
+				onLoad={onImageLoad('left_down')}
 			/>
 			<Image
 				className={`${imageClassName} ${
@@ -186,6 +192,7 @@ const CatibirTyping = ({ type }: CatiborAnimationProps) => {
 				alt=''
 				width={1472}
 				height={992}
+				onLoad={onImageLoad('whiskers')}
 			/>
 		</>
 	)

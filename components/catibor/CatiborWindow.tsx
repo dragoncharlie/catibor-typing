@@ -15,6 +15,17 @@ type CatiborAnimationProps = {
 const imageClassName =
 	'absolute bottom-0 right-0 max-h-full object-right-bottom object-contain'
 
+const baseImages = [
+	'table',
+	'body',
+	'right_up',
+	'right_down',
+	'left_up',
+	'left_down',
+	'whiskers',
+]
+const hiddenImages = ['angry', 'shocked', 'sad']
+
 const CatiborWindow = ({
 	type,
 	onFocus,
@@ -23,7 +34,7 @@ const CatiborWindow = ({
 	focused,
 }: CatiborAnimationProps) => {
 	// to preload hidden images, but hide them from code after that
-	const [init, setInit] = useState(false)
+	const [loadedImages, setLoadedImages] = useState<string[]>([])
 	const [boop, setBoop] = useState<NodeJS.Timeout | null>(null)
 	const [closeCount, setCloseCount] = useState(0)
 	const [timeoutId, setTimeoutId] = useState<NodeJS.Timeout | null>(null)
@@ -32,14 +43,6 @@ const CatiborWindow = ({
 	useEffect(() => {
 		setClosed(!!localStorage.getItem('...'))
 	}, [])
-
-	useEffect(() => {
-		if (!closed) {
-			setTimeout(() => {
-				setInit(true)
-			}, 1000)
-		}
-	}, [closed])
 
 	const onBoop = () => {
 		const id = setTimeout(() => {
@@ -86,7 +89,16 @@ const CatiborWindow = ({
 		}
 	}
 
-	if (closed === null) return null
+	const onImageLoad = (img: string) => () => {
+		setLoadedImages((state) => [...state, img])
+	}
+
+	const isBaseInit =
+		loadedImages.filter((img) => baseImages.includes(img)).length ===
+			baseImages.length && closed !== null
+	const isHiddenInit =
+		loadedImages.filter((img) => hiddenImages.includes(img)).length ===
+		hiddenImages.length
 
 	return (
 		<Window
@@ -104,6 +116,11 @@ const CatiborWindow = ({
 			onFocus={onFocus}
 		>
 			<div className='grow relative'>
+				{!isBaseInit && (
+					<div className='absolute top-0 left-0 bottom-0 right-0 bg-surface-50 flex justify-end items-end z-10 p-16'>
+						<p>Catibor is loading...</p>
+					</div>
+				)}
 				<div className='pointer-events-none z-0 relative flex justify-end items-end select-none'>
 					{/* desk */}
 					<Image
@@ -112,6 +129,7 @@ const CatiborWindow = ({
 						alt=''
 						width={1472}
 						height={992}
+						onLoad={onImageLoad('table')}
 					/>
 					{!closed && (
 						<>
@@ -129,11 +147,15 @@ const CatiborWindow = ({
 								width={1472}
 								height={992}
 							/>
-							{/* default + typing */}
-							<CatiborTyping type={closeCount > 0 ? '' : type} />
-							{/* closing */}
 
-							{(!init || !!closeCount) && (
+							{/* default + typing */}
+							<CatiborTyping
+								type={closeCount > 0 ? '' : type}
+								onImageLoad={onImageLoad}
+							/>
+
+							{/* closing */}
+							{(!isHiddenInit || !!closeCount) && (
 								<>
 									<Image
 										className={`${imageClassName} ${
@@ -143,6 +165,7 @@ const CatiborWindow = ({
 										alt=''
 										width={1472}
 										height={992}
+										onLoad={onImageLoad('shocked')}
 									/>
 									<Image
 										className={`${imageClassName} ${
@@ -154,6 +177,7 @@ const CatiborWindow = ({
 										alt=''
 										width={1472}
 										height={992}
+										onLoad={onImageLoad('sad')}
 									/>
 									<Image
 										className={`${imageClassName} ${
@@ -163,6 +187,7 @@ const CatiborWindow = ({
 										alt=''
 										width={1472}
 										height={992}
+										onLoad={onImageLoad('angry')}
 									/>
 								</>
 							)}

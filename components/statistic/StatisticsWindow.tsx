@@ -50,7 +50,7 @@ const StatisticsWindow = ({
 			onFocus={onFocus}
 			className={`absolute left-1/3 xl:left-[40%] top-16 max-w-[520px] ${layer}`}
 		>
-			<div className='p-16 overflow-auto'>
+			<div className='py-16 px-32 overflow-auto'>
 				{stats[tab].length ? (
 					<>
 						<p className='text-center mb-12 text-18'>Best 10 results</p>

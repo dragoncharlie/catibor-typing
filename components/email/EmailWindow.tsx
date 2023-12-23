@@ -10,6 +10,7 @@ type EmailWindowProps = {
 	setAnimationType: (type: string) => void
 	layer: string
 	focused: boolean
+	isCapsOn: boolean
 }
 
 const EmailWindow = ({
@@ -18,9 +19,11 @@ const EmailWindow = ({
 	onClose,
 	layer,
 	focused,
+	isCapsOn,
 }: EmailWindowProps) => {
 	const [lang, setLang] = useState('')
 	const [isPaused, setIsPaused] = useState(false)
+
 	const stopGame = () => {
 		setLang('')
 		onClose()
@@ -58,6 +61,7 @@ const EmailWindow = ({
 					setIsPaused={setIsPaused}
 					setAnimationType={setAnimationType}
 					lang={lang}
+					isCapsOn={isCapsOn}
 				/>
 			)}
 		</Window>

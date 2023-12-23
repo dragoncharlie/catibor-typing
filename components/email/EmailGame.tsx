@@ -16,9 +16,15 @@ type EmailGameProps = {
 	setAnimationType: (type: string) => void
 	setIsPaused: (paused: boolean) => void
 	lang: string
+	isCapsOn: boolean
 }
 
-const EmailGame = ({ setAnimationType, setIsPaused, lang }: EmailGameProps) => {
+const EmailGame = ({
+	setAnimationType,
+	setIsPaused,
+	lang,
+	isCapsOn,
+}: EmailGameProps) => {
 	// start game
 	const [startTime, setStartTime] = useState<Date | null>(null)
 	const [email, setEmail] = useState(['meow'])
@@ -160,13 +166,16 @@ const EmailGame = ({ setAnimationType, setIsPaused, lang }: EmailGameProps) => {
 
 	return (
 		<>
-			<div className='border-b-2 w-full top-0 left-0 text-12 px-16 py-2'>
-				<p>
-					<span className='text-surface-800'>To:</span> important@client.com
-				</p>
-				<p>
-					<span className='text-surface-800'>From:</span> catibor@aspirity.com
-				</p>
+			<div className='border-b-2 w-full top-0 left-0 text-12 px-16 py-2 flex gap-16 justify-between items-center'>
+				<div>
+					<p>
+						<span className='text-surface-800'>To:</span> important@client.com
+					</p>
+					<p>
+						<span className='text-surface-800'>From:</span> catibor@aspirity.com
+					</p>
+				</div>
+				{isCapsOn && <p className='text-16'>Caps Lock!</p>}
 			</div>
 			<div className='grow overflow-hidden'>
 				<div className='h-full overflow-auto p-16'>

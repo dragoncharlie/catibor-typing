@@ -3,6 +3,7 @@ import Image from 'next/image'
 
 import Window from '@/components/Window'
 import CatiborTyping from '@/components/catibor/CatiborTyping'
+import CatiborBubble from '@/components/catibor/CatiborBubble'
 
 type CatiborAnimationProps = {
 	type: string
@@ -10,6 +11,7 @@ type CatiborAnimationProps = {
 	onClose: () => void
 	layer: string
 	focused: boolean
+	isCapsOn: boolean
 }
 
 const imageClassName =
@@ -32,10 +34,10 @@ const CatiborWindow = ({
 	onClose,
 	layer,
 	focused,
+	isCapsOn,
 }: CatiborAnimationProps) => {
 	// to preload hidden images, but hide them from code after that
 	const [loadedImages, setLoadedImages] = useState<string[]>([])
-	const [boop, setBoop] = useState<NodeJS.Timeout | null>(null)
 	const [closeCount, setCloseCount] = useState(0)
 	const [timeoutId, setTimeoutId] = useState<NodeJS.Timeout | null>(null)
 	const [closed, setClosed] = useState<boolean | null>(null)
@@ -43,13 +45,6 @@ const CatiborWindow = ({
 	useEffect(() => {
 		setClosed(!!localStorage.getItem('...'))
 	}, [])
-
-	const onBoop = () => {
-		const id = setTimeout(() => {
-			setBoop(null)
-		}, 1000)
-		setBoop(id)
-	}
 
 	useEffect(() => {
 		if (type === 'typing') {
@@ -194,35 +189,13 @@ const CatiborWindow = ({
 						</>
 					)}
 				</div>
-				{!closed && ['default', 'typing'].includes(type) && (
-					<button
-						onClick={onBoop}
-						tabIndex={-1}
-						className='absolute right-[26%] top-[40%] -translate-y-1/2 translate-x-1/2 h-24 w-24 opacity-0 bg-error'
+				{!closed && (
+					<CatiborBubble
+						isCapsOn={isCapsOn}
+						closeCount={closeCount}
+						isBoop={['default', 'typing'].includes(type)}
 					/>
 				)}
-				<div className='absolute top-[20%] md:top-1/3 left-32 md:left-128 right-1/2 flex justify-center md:-translate-y-1/2'>
-					{!closed && (!!boop || !!closeCount) && (
-						<div className='border-2 p-16 whitespace-pre-line bg-surface-50 rounded-[38%_34%_20%_3%_/_5%_3%_4%_32%] '>
-							{!!boop && 'Boop!'}
-							{closeCount === 1 && (
-								<>
-									You clicked it by accident,
-									<br /> aren't you?
-								</>
-							)}
-							{closeCount === 2 && (
-								<>
-									Why are you trying to get rid of me?
-									<br /> You don't like me?
-								</>
-							)}
-							{closeCount === 3 && 'Are you sure?'}
-							{closeCount === 4 && 'Ok...'}
-							{closeCount === -1 && 'Phew, false alarm...'}
-						</div>
-					)}
-				</div>
 			</div>
 		</Window>
 	)

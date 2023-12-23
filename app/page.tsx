@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 
 import CatiborWindow from '@/components/catibor/CatiborWindow'
@@ -16,6 +16,18 @@ const Home = () => {
 		'catibor',
 		'email',
 	])
+	const [isCapsOn, setIsCapsOn] = useState(false)
+
+	const checkCapsState = (event: KeyboardEvent) => {
+		const caps = event.getModifierState && event.getModifierState('CapsLock')
+		setIsCapsOn(caps)
+	}
+
+	useEffect(() => {
+		document.addEventListener('keydown', checkCapsState)
+
+		return () => document.removeEventListener('keydown', checkCapsState)
+	}, [])
 
 	const onClose = (windowName: windowsType) => () => {
 		setOpenedWindows((state) => state.filter((name) => name !== windowName))
@@ -65,6 +77,7 @@ const Home = () => {
 							onFocus={onOpen('email')}
 							setAnimationType={setAnimationType}
 							onClose={onClose('email')}
+							isCapsOn={isCapsOn}
 						/>
 					)}
 					{openedWindows.includes('catibor') && (
@@ -74,6 +87,7 @@ const Home = () => {
 							onClose={onClose('catibor')}
 							onFocus={onOpen('catibor')}
 							type={animationType}
+							isCapsOn={isCapsOn}
 						/>
 					)}
 					{openedWindows.includes('statistic') && (

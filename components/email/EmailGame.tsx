@@ -192,7 +192,7 @@ const EmailGame = ({ setAnimationType, setIsPaused, lang }: EmailGameProps) => {
 									input.length,
 								)}
 							</span>
-							<span className='underline font-bold text-error'>
+							<span className='underline font-bold text-error whitespace-break-spaces'>
 								{input.slice(email[currentWordIndex].length)}
 							</span>
 							<span className='underline font-bold text-surface-600'>

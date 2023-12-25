@@ -6,6 +6,11 @@ I have to write a lot of e-mails every day, so I have to be fast. You can join m
 
 ### [Let's go and write few letters](https://catibor-typing.vercel.app/)
 
+## Telegram stickers
+
+Also, there are two sticker packs with Catibor: [static](https://t.me/addstickers/Catibor) and [animated](https://t.me/addstickers/CatiborVideo).
+
+# For Devs
 
 ## Getting Started
 

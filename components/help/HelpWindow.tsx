@@ -43,15 +43,23 @@ const HelpWindow = ({ onFocus, onClose, layer, focused }: HelpWindowProps) => {
 					various reasons. So he would like to get your help&nbsp;;)
 					<br />
 					<br />
-					By the way, there are{' '}
+					By the way, there are two sticker packs for telegram with Catibor:{' '}
 					<Link
 						className='text-surface-900 underline'
 						href='https://t.me/addstickers/Catibor'
 						target='_blank'
 					>
-						telegram stickers with Catibor
+						static
+					</Link>{' '}
+					and{' '}
+					<Link
+						className='text-surface-900 underline'
+						href='https://t.me/addstickers/CatiborVideo'
+						target='_blank'
+					>
+						animated
 					</Link>
-					.
+					!!!
 				</p>
 				{missing && (
 					<>

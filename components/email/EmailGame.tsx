@@ -34,7 +34,6 @@ const EmailGame = ({
 	const [currentWordIndex, setCurrentWordIndex] = useState(0)
 	const [input, setInput] = useState('')
 	const [correctInput, setCorrectInput] = useState('')
-	const [isCorrect, setIsCorrect] = useState(true)
 
 	// pause
 	const [pausedTime, setPausedTime] = useState<Date | null>(null)
@@ -109,16 +108,18 @@ const EmailGame = ({
 		} else if (value !== input) {
 			setInput(value)
 			if (currentWord.startsWith(value)) {
-				setIsCorrect(true)
 				setCorrectInput(value)
-			} else {
-				setIsCorrect(false)
 			}
 		}
 
 		if (value === currentWord && currentWordIndex === email.length - 1) {
 			endGame()
 		}
+	}
+
+	const inputRef = useRef<HTMLInputElement>(null)
+	const onAreaClick = () => {
+		inputRef.current!.focus()
 	}
 
 	const onFocus = () => {
@@ -177,7 +178,11 @@ const EmailGame = ({
 				</div>
 				{isCapsOn && <p className='text-16'>Caps Lock!</p>}
 			</div>
-			<div className='grow overflow-hidden'>
+			<button
+				className='grow overflow-hidden relative text-start tracking-[.2em]'
+				onClick={onAreaClick}
+				type='button'
+			>
 				<div className='h-full overflow-auto p-16'>
 					<p>
 						{!!currentWordIndex &&
@@ -191,7 +196,7 @@ const EmailGame = ({
 									{word}{' '}
 								</span>
 							))}
-						<span ref={currentWordRef}>
+						<span className='whitespace-nowrap' ref={currentWordRef}>
 							<span className='underline font-bold text-surface-900'>
 								{email[currentWordIndex].slice(0, correctInput.length)}
 							</span>
@@ -204,7 +209,10 @@ const EmailGame = ({
 							<span className='underline font-bold text-error whitespace-break-spaces'>
 								{input.slice(email[currentWordIndex].length)}
 							</span>
-							<span className='underline font-bold text-surface-600'>
+							<span className='underline font-bold text-surface-600 relative'>
+								<span className='absolute text-surface-900 -left-[3px] animate-blink'>
+									|
+								</span>
 								{email[currentWordIndex].slice(input.length)}
 							</span>
 						</span>
@@ -216,17 +224,20 @@ const EmailGame = ({
 						))}
 					</p>
 				</div>
-			</div>
-			{/* TODO get rid off of input */}
+				{pausedTime && (
+					<div className='bg-surface-50/50 absolute top-0 left-0 right-0 bottom-0 flex justify-center items-center hover:text-primary backdrop-blur-sm'>
+						<p>Click here to resume</p>
+					</div>
+				)}
+			</button>
 			<input
 				autoFocus
-				className={`mt-auto border-t-2 border-surface-900 px-16 py-8 w-full focus:outline-none ${
-					!isCorrect && 'text-error'
-				}`}
+				className='opacity-0 w-0 h-0 absolute'
 				onFocus={onFocus}
 				onBlur={onBlur}
 				value={input}
 				onChange={onChange}
+				ref={inputRef}
 			/>
 		</>
 	)

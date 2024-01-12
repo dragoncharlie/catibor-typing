@@ -13,9 +13,7 @@ const neucha = Neucha({
 export const metadata = {
 	title: 'Catibor Typing',
 	description: 'Typing game with Catibor',
-	openGraph: {
-		images: ['https://catibor-typing.vercel.app/opengraph-image.png'],
-	},
+	metadataBase: new URL('https://catibor-typing.vercel.app/'),
 }
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
